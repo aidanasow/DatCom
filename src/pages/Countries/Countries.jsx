@@ -3,6 +3,7 @@ import classes from "./Countries.module.scss";
 import { Typography, Container, CustomCard } from "ui/index";
 import { useCountriesStore } from "./store/useCountriesStore";
 import { PaginationComponent } from "modules/PaginationComponent/PaginationComponent";
+import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 
 export const Countries = () => {
   const [offset, setOffset] = useState(0);
@@ -15,24 +16,28 @@ export const Countries = () => {
   };
 
   return (
-    <div className={classes.wrapper}>
-      <Container>
-        <Typography variant="heading">Страны</Typography>
-        <div className={classes.cardWrapper}>
-          {countries.map((item, key) => (
-            <CustomCard
-              key={key}
-              variant="country"
-              title={item.title}
-              image={item.image}
-              description={item.description}
-              link={`/countries/${item.id}`}
-            />
-          ))}
-        </div>
+      <>
+        <Breadcrumbs breadcrumbKey={"countries"}/>
+        <div className={classes.wrapper}>
+          <Container>
+            <Typography variant="heading">Страны</Typography>
+            <div className={classes.cardWrapper}>
+              {countries.map((item, key) => (
+                  <CustomCard
+                      key={key}
+                      variant="country"
+                      title={item.title}
+                      image={item.image}
+                      description={item.description}
+                      link={`/countries/${item.id}`}
+                  />
+              ))}
+            </div>
 
-        <PaginationComponent count={count} onChange={onChange} />
-      </Container>
-    </div>
+            <PaginationComponent count={count} onChange={onChange}/>
+          </Container>
+        </div>
+      </>
+
   );
 };

@@ -35,13 +35,13 @@ export const Home = () => {
         maxCards = 1.39;
     }
     if (phone) {
-        maxCards = 1.5
+        maxCards = 2
     }
     let cards = 3.2
     if (laptop) cards = 2.5
     if (tablet) cards = 2.1
     if (miniTab) cards = 1.7
-    if (phone) cards = 1.1
+    if (phone) cards = 1.2
     const openModal = (student) => {
         setOpen(true);
         setStudent(student);
@@ -52,14 +52,13 @@ export const Home = () => {
     };
 
     return (
-        <div>
+        <>
             <Hero/>
             <Container>
                 <AboutUs/>
                 <Typography variant="heading">страны</Typography>
             </Container>
             <Container slide>
-
                 <Slider
                     maxCards={maxCards}
                     sliderList={countries}
@@ -74,13 +73,13 @@ export const Home = () => {
                     )}
                 />
             </Container>
-
-            <Container>
-                <Services/>
-                <Typography variant="heading">поступившие студенты</Typography>
-            </Container>
+            <div  id={"services"}>
+                <Container>
+                    <Services/>
+                    <Typography variant="heading">поступившие студенты</Typography>
+                </Container>
+            </div>
             <Container slide>
-
                 <Slider
                     maxCards={cards}
                     sliderList={students}
@@ -95,18 +94,13 @@ export const Home = () => {
                     )}
                 />
             </Container>
-
-            {/*<ReviewsBlock />*/}
+            <ReviewsBlock />
             <Container>
-                <Typography variant="heading">часто задаваемые вопросы</Typography>
                 <FAQBlock />
-                <Typography variant="heading">Контакты</Typography>
                 <Contacts />
             </Container>
 
-
-
             <ModalComponent open={open} closeModal={closeModal} student={student}/>
-        </div>
+        </>
     );
 };

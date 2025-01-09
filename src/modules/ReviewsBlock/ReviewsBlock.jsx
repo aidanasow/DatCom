@@ -4,10 +4,11 @@ import { PATHS } from "utils/constants/Constants";
 import { Link } from "react-router-dom";
 import { useReviewsBlockStore } from "./store/useReviewsBlockStore";
 import { useMediaQuery } from "utils/helpers/useMedia";
+import {ArrowRight} from "assets/icons/ArrowRight.jsx";
 
 export const ReviewsBlock = () => {
   const isTablet = useMediaQuery("(max-width: 900px)");
-  const isMobile = useMediaQuery("(max-width: 400px)");
+  const isMobile = useMediaQuery("(max-width: 500px)");
 
   const limit = isMobile ? 1 : isTablet ? 2 : 3;
 
@@ -29,6 +30,12 @@ export const ReviewsBlock = () => {
           {reviews.map((item, key) => (
             <ReviewCard key={key} data={item} short />
           ))}
+        </div>
+        <div className={classes.link}>
+          <Link to={PATHS.reviews}>
+            <Typography weight="regular">Смотреть все</Typography>
+          </Link>
+          <ArrowRight size={24}/>
         </div>
       </Container>
     </div>

@@ -13,7 +13,7 @@ export const ReviewCard = ({ data, short }) => {
           <img src={data.image} alt={data.name} />
         </div>
         <div className={classes.studentInfo}>
-          <Typography variant="h4" weight="regular">
+          <Typography variant="h4" weight="regular" truncate={short? 15:0}>
             {data.full_name}
           </Typography>
           <Typography className={classes.studentInfo_study}>
@@ -34,8 +34,9 @@ export const ReviewCard = ({ data, short }) => {
           </div>
         </div>
       </div>
-      <div className={classes.block_bottom}>
-        <Typography variant="h6">{data.text}</Typography>
+      <div >
+
+        <Typography variant="h6" truncate={short? 130: 0}>{data.text}</Typography>
       </div>
     </div>
   );

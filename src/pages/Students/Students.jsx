@@ -4,6 +4,7 @@ import classes from "./Students.module.scss";
 import { useStudentsStore } from "./store/useStudentsStore";
 import { PaginationComponent } from "modules/PaginationComponent/PaginationComponent";
 import { ModalComponent } from "modules/index";
+import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 
 export const Students = () => {
   const [offset, setOffset] = useState(0);
@@ -28,26 +29,30 @@ export const Students = () => {
   };
 
   return (
-    <div className={classes.wrapper}>
-      <Container>
-        <Typography variant="heading">поступившие студенты</Typography>
-        <div className={classes.cardWrapper}>
-          {students.map((item) => (
-            <CustomCard
-              key={item.id}
-              variant="students"
-              title={item.title}
-              image={item.image}
-              description={item.description}
-              modal={() => openModal(item)}
-            />
-          ))}
+      <>
+        <Breadcrumbs breadcrumbKey={"students"}/>
+        <div className={classes.wrapper}>
+          <Container>
+            <Typography variant="heading">поступившие студенты</Typography>
+            <div className={classes.cardWrapper}>
+              {students.map((item) => (
+                  <CustomCard
+                      key={item.id}
+                      variant="students"
+                      title={item.title}
+                      image={item.image}
+                      description={item.description}
+                      modal={() => openModal(item)}
+                  />
+              ))}
+            </div>
+
+            <PaginationComponent count={count} onChange={onChange}/>
+          </Container>
+
+          <ModalComponent open={open} closeModal={closeModal} student={student}/>
         </div>
+      </>
 
-        <PaginationComponent count={count} onChange={onChange} />
-      </Container>
-
-      <ModalComponent open={open} closeModal={closeModal} student={student} />
-    </div>
   );
 };

@@ -2,9 +2,18 @@
 
 .wrapper {
   margin-top: 32px;
+  @include medium {
+    margin-top: 40px;
+  }
+  @include small-medium {
+    margin-top: 24px;
+  }
 
   .semiText {
     margin-top: 32px;
+    @include medium {
+      margin-top: 24px;
+    }
   }
 
   .reviewWrapper {
@@ -12,17 +21,29 @@
     gap: 20px;
     align-items: center;
     margin-top: 24px;
+    @include medium {
+      margin-top: 8px;
+    }
+    @include small {
+      margin-top: 9px;
+    }
 
     .starWrapper {
       display: flex;
       gap: 8px;
       max-width: 307px;
-      margin-top: 24px;
-      margin-bottom: 16px;
 
       svg {
         width: 55px;
         height: 55px;
+        @include medium {
+          width: 48px;
+          height: 57px;
+        }
+        @include small {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
@@ -37,9 +58,14 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-top: 16px;
-
     @include medium {
+      gap: 16px;
+    }
+    @include small-medium {
       grid-template-columns: 1fr;
+    }
+    @include small {
+      margin-top: 9px;
     }
   }
 

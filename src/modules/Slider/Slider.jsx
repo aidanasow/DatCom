@@ -40,7 +40,7 @@ export const Slider = ({
       <Swiper
         className={classes.swiper}
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={10}
+        spaceBetween={16}
         allowTouchMove={true}
         slidesPerView={slidesPerView}
         navigation={{

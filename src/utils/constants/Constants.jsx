@@ -39,137 +39,47 @@ export const navigationData = [
   { nav: "Отзывы", path: PATHS.reviews },
 ];
 
+export const breadcrumbs=[
+  {key: "countries", label: "Страны"},
+  {key: "countriesDetail", label: "Страны", route: PATHS.countries},
+  {key: "universities", label: "universities"},
+  {key: "universitiesDetail", label: "universities", route: PATHS.universities},
+  {key: "students", label: "students", },
+  {key: "reviews", label: "reviews"},
+  {key: "form", label: "Оставить заявку"},
+];
+export const generateBreadcrumbs = (key, thirdElement = null) => {
+  const breadcrumbItem = breadcrumbs.find((item) => item.key === key);
+
+  if (!breadcrumbItem) return [];
+
+  const baseBreadcrumbs = [
+    { text: "Главная", route: "/" },
+  ];
+  baseBreadcrumbs.push({
+    text: breadcrumbItem.label,
+    route: breadcrumbItem.route || null,
+    isActive: !thirdElement,
+  });
+
+  if (thirdElement) {
+    baseBreadcrumbs.push({
+      text: thirdElement,
+      route: null,
+      isActive: true
+    });
+  }
+
+  return baseBreadcrumbs;
+};
+
 export const PhoneNumberData = [
   "+996 505‒28‒63‒85",
   "+996 505‒37‒13‒62",
   "+996 70‒671‒88‒88",
 ];
 
-export const CountryArr = [
-  {
-    image: country,
-    title: "Китай",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: country,
-    title: "Италия",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: country,
-    title: "Китай",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: country,
-    title: "Италия",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: country,
-    title: "Китай",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: country,
-    title: "Италия",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-];
-export const StudentsArr = [
-  {
-    image: student,
-    title: "Фио",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student,
-    title: "Каныкей",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student,
-    title: "Китай",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student,
-    title: "Италия",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student,
-    title: "Китай",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student,
-    title: "Италия",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-];
 
-export const ServicesData = [
-  {
-    title: "Консультации по выбору\r\n страны и университета",
-    description:
-      "Анализ целей и интересов – определение академических и карьерных целей студента, его интересов и предпочтений.\r\n Выбор подходящих стран – подбор стран с учетом бюджета, культурных особенностей, языка обучения и визовых требований.\r\n Подбор учебных заведений – составление списка университетов, подходящих по рейтингу, программам и требованиям.\r\nОценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\n Помощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов. Оценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\n Помощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.Помощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.",
-  },
-  {
-    title: "Помощь\r\n в подаче документов",
-    description: "2222222",
-  },
-  {
-    title: "Визовая\r\n поддержка",
-    description:
-      "Анализ целей и интересов – определение академических и карьерных целей студента, его интересов и предпочтений.\r\nВыбор подходящих стран – подбор стран с учетом бюджета, культурных особенностей, языка обучения и визовых требований.\r\nПодбор учебных заведений – составление списка университетов, подходящих по рейтингу, программам и требованиям.\r\nОценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\nПомощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.Оценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\nПомощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.Помощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.",
-  },
-  {
-    title: "Подготовка\r\n перед выездом",
-    description: "44444",
-  },
-  {
-    title: "Помощь\r\n со стипендиями",
-    description:
-      "Анализ целей и интересов – определение академических и карьерных целей студента, его интересов и предпочтений.\r\nВыбор подходящих стран – подбор стран с учетом бюджета, культурных особенностей, языка обучения и визовых требований.\r\nПодбор учебных заведений – составление списка университетов, подходящих по рейтингу, программам и требованиям.\r\nОценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\nПомощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.Оценка программ и рейтингов – анализ качества программ в выбранной области и сравнительный обзор университетов.\r\nПомощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.Помощь в подготовке к поступлению – консультации по вступительным требованиям, необходимым экзаменам, подготовке документов.",
-  },
-];
-
-export const OftenQuestionsData = [
-  {
-    question: "Какие документы нужны для поступления в зарубежный университет?",
-    answer:
-      "Обычно требуются аттестат или диплом, транскрипт оценок, мотивационное и рекомендательные письма, результаты тестов (например, IELTS или TOEFL) и, для творческих специальностей, портфолио.",
-  },
-  {
-    question: "Какие документы нужны для поступления в зарубежный университет?",
-    answer:
-      "Обычно требуются аттестат или диплом, транскрипт оценок, мотивационное и рекомендательные письма, результаты тестов (например, IELTS или TOEFL) и, для творческих специальностей, портфолио.",
-  },
-  {
-    question: "Какие документы нужны для поступления в зарубежный университет?",
-    answer:
-      "Обычно требуются аттестат или диплом, транскрипт оценок, мотивационное и рекомендательные письма, результаты тестов (например, IELTS или TOEFL) и, для творческих специальностей, портфолио.",
-  },
-  {
-    question: "Какие документы нужны для поступления в зарубежный университет?",
-    answer:
-      "Обычно требуются аттестат или диплом, транскрипт оценок, мотивационное и рекомендательные письма, результаты тестов (например, IELTS или TOEFL) и, для творческих специальностей, портфолио.",
-  },
-];
 
 export const ContactsData = [
   {
@@ -191,40 +101,7 @@ export const ContactsData = [
   { icon: <TelegramIcon />, title: "Телеграм", text: "datcom_edu" },
 ];
 
-export const ReviewsData = [
-  {
-    image: student1,
-    name: "Фио",
-    study: "Lorem ipsum dolor sit amet",
-    rating: 3,
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student1,
-    name: "Фио",
-    study: "Lorem ipsum dolor sit amet",
-    rating: 5,
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student1,
-    name: "Фио",
-    study: "Lorem ipsum dolor sit amet",
-    rating: 4,
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-  {
-    image: student1,
-    name: "Фио",
-    study: "Lorem ipsum dolor sit amet",
-    rating: 4,
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Dictum sed et sed ut at eget erat dui. Vel at fusce integer pretium. Vivamus ut est purus nunc pharetra semper. Viverra cursus elementum egestas mi in sed fames.",
-  },
-];
+
 
 export const optionsCountry = [
   { value: "ru", label: "Россия" },
