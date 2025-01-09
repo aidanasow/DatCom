@@ -1,0 +1,93 @@
+@use "styles/mixin" as *;
+
+.block {
+  margin: 32px 0 120px;
+
+  &_top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .title {
+      position: relative;
+      color: var(--color-primary);
+      flex-grow: 1;
+      height: 84px;
+      padding: 20px;
+      cursor: pointer;
+
+      &:first-child {
+        border-radius: 14px 0 0 14px;
+      }
+
+      &:last-child {
+        border-radius: 0 14px 14px 0;
+      }
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: var(--color-yellow);
+      }
+    }
+
+    .active {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+  }
+
+  &_bottom {
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    @include medium {
+      flex-direction: column;
+    }
+    @include small {
+      padding: 14px;
+    }
+
+    .left {
+      &_title {
+        margin-bottom: 24px;
+      }
+    }
+
+    .right {
+      max-width: 399px;
+      display: flex;
+      flex-direction: column;
+      @include medium {
+        max-width: none;
+        align-items: flex-end;
+      }
+
+      &Image {
+        @include medium {
+          display: none;
+        }
+      }
+
+      img {
+        border-radius: 20px;
+      }
+
+      .btnBlock {
+        margin-top: 16px;
+      }
+    }
+  }
+}

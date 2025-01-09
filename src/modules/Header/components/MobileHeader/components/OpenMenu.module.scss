@@ -1,0 +1,75 @@
+@use "styles/mixin" as *;
+
+.backdrop {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  overflow: hidden;
+
+  .nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-white);
+    float: right;
+    width: 303px;
+    padding: 40px;
+    border-radius: 40px 0 0 40px;
+    margin-top: 5px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    @include small-medium {
+      width: 275px;
+      padding: 30px;
+    }
+    .closeBtn {
+      position: absolute;
+      top: 28px;
+      right: 18px;
+      padding: 11px;
+    }
+    .innerBlock {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      //padding: 30px;
+      @include small-medium {
+        width: 200px;
+      }
+
+      &_logo {
+        width: 150px;
+      }
+
+      &_nav {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+      }
+
+      .phone {
+        margin-top: 4px;
+      }
+
+
+    }
+  }
+}
+
+.backdrop.menuClose {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop:not(.menuClose) .nav {
+  transform: translateX(0);
+}

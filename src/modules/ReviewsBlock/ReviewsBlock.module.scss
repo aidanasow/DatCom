@@ -1,0 +1,22 @@
+.block {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 40px 0;
+  margin-bottom: 120px;
+
+  .list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      color: var(--color-blue);
+    }
+  }
+}

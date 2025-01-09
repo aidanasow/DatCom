@@ -1,0 +1,48 @@
+.block {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  max-width: 610px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
+
+  &_top {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+
+    .studentPhoto {
+      width: 105px;
+      height: 109px;
+
+      img {
+        object-fit: cover;
+        border-radius: 14px;
+      }
+    }
+
+    .studentInfo {
+      margin: 8px 0;
+
+      &_study {
+        margin: 8px 0;
+      }
+
+      .rate {
+        display: flex;
+        gap: 8px;
+
+        .star {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+.short {
+  max-width: 400px;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}

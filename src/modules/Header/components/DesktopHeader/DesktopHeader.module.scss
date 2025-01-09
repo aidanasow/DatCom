@@ -1,0 +1,19 @@
+.header {
+  .topHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+  }
+  .bottomHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    .logoBlock {
+      width: 172px;
+      height: 64px;
+    }
+  }
+}

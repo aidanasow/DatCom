@@ -1,0 +1,162 @@
+@use "styles/mixin" as *;
+
+.typography {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.h1 {
+  font-size: 48px;
+  @include medium {
+    font-size: 26px;
+  }
+  @include small {
+    font-size: 24px;
+  }
+}
+
+.h2,
+.heading {
+  font-size: 40px;
+  @include medium {
+    font-size: 24px;
+  }
+  @include small {
+    font-size: 22px;
+  }
+}
+
+.h3 {
+  font-size: 32px;
+  @include medium {
+    font-size: 22px;
+  }
+  @include small {
+    font-size: 20px;
+  }
+}
+
+.h4 {
+  font-size: 24px;
+  @include medium {
+    font-size: 20px;
+  }
+  @include small {
+    font-size: 18px;
+  }
+}
+
+.h5 {
+  font-size: 20px;
+  @include medium {
+    font-size: 18px;
+  }
+  @include small {
+    font-size: 16px;
+  }
+}
+
+.h6 {
+  font-size: 18px;
+  @include medium {
+    font-size: 16px;
+  }
+  @include small {
+    font-size: 14px;
+  }
+}
+
+.body {
+  font-size: 20px;
+  @include medium {
+    font-size: 18px;
+  }
+  @include small {
+    font-size: 16px;
+  }
+}
+
+.smallBody {
+  font-size: 18px;
+  @include medium {
+    font-size: 16px;
+  }
+  @include small {
+    font-size: 14px;
+  }
+}
+
+.heading {
+  text-transform: uppercase;
+  font-family: nunito-Bold;
+}
+
+.extralight {
+  font-family: nunito-ExtraLight;
+}
+
+.light {
+  font-family: nunito-Light;
+}
+
+.regular {
+  font-family: nunito-Regular;
+}
+
+.medium {
+  font-family: nunito-Medium;
+}
+
+.semiBold {
+  font-family: nunito-SemiBold;
+}
+
+.bold {
+  font-family: nunito-Bold;
+}
+
+.extraBold {
+  font-family: nunito-ExtraBold;
+}
+
+.primary {
+  color: var(--color-primary);
+}
+
+.black {
+  color: var(--color-black);
+}
+
+.gray1 {
+  color: var(--color-gray1);
+}
+
+.gray2 {
+  color: var(--color-gray2);
+}
+
+.gray3 {
+  color: var(--color-gray3);
+}
+
+.white {
+  color: var(--color-white);
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upp {
+  text-transform: uppercase;
+}
+
+.pointer {
+  cursor: pointer;
+}

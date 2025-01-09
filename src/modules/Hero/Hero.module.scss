@@ -1,0 +1,54 @@
+@use "styles/mixin" as *;
+
+.hero {
+  width: 100%;
+  height: calc(100vh - 90px);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+  margin-top: -50px;
+  @include medium {
+    margin-top: -30px;
+    height: 340px;
+  }
+  @include small-medium {
+    height: 300px;
+  }
+  @include small {
+    height: 244px;
+    margin-top: -56px;
+  }
+
+  .textBlock {
+    position: absolute;
+    bottom: 30%;
+    @include medium {
+      bottom: 67px;
+    }
+    @include small-medium {
+      bottom: 40px;
+    }
+    @include small {
+      position: relative;
+      top: 260px;
+      height: 135px;
+    }
+    .title {
+      text-transform: uppercase;
+    }
+
+    .desc {
+      max-width: 500px;
+      margin: 24px 0 16px;
+      @include small {
+        margin: 8px 0 2px;
+        h4  {
+          font-size: 16px !important;
+        }
+      }
+    }
+  }
+}

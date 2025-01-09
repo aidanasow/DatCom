@@ -1,0 +1,13 @@
+.block {
+  display: flex;
+  gap: 8px;
+  .link {
+    display: block;
+    width: 34px;
+    height: 34px;
+  }
+  .header {
+    width: 24px;
+    height: 24px;
+  }
+}

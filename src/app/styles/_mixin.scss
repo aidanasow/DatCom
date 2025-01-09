@@ -1,0 +1,35 @@
+$small-screen: 500px;
+$small-medium-screen: 700px;
+$medium-screen: 900px;
+$large-screen: 1100px;
+
+@mixin large {
+  @media (max-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media (max-width: $medium-screen) {
+    @content;
+  }
+}
+
+@mixin small-medium {
+  @media (max-width: $small-medium-screen) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin flexbox($justify: center, $align: center, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}

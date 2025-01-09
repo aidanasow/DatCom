@@ -1,0 +1,27 @@
+@use "styles/mixin" as *;
+
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_logo {
+    width: 172px;
+    height: 64px;
+    @include small-medium {
+      width: 79px;
+      height: 30px;
+    }
+  }
+
+  &_right {
+    display: flex;
+    gap: 38px;
+    align-items: center;
+  }
+
+  .block_burger {
+    width: 34px;
+    height: 34px;
+  }
+}

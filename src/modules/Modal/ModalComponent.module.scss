@@ -1,0 +1,71 @@
+@use "styles/mixin" as *;
+.scroll {
+  height: 88%;
+  overflow-y: scroll;
+  @include small-medium {
+    height: 84%;
+  }
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70.1%;
+  max-height: 90%;
+  border-radius: 20px;
+  background: var(--color-white);
+  border: none;
+  outline: none;
+  padding: 30px;
+  overflow: hidden;
+  @include large {
+    width: 84.68%;
+    padding: 20px;
+  }
+  @include small-medium {
+    padding: 10px;
+    width: 96%;
+  }
+  &Inner {
+    display: flex;
+    justify-content: space-between;
+    max-height: 525px;
+    height: auto;
+    gap: 20px;
+    overflow: hidden;
+    @include large {
+      max-height: 406px;
+      gap: 16px;
+    }
+    @include small-medium {
+      flex-direction: column;
+      height: 380px;
+      gap: 8px;
+    }
+    &Left {
+      width: 39.7%;
+      border-radius: 20px;
+      height: auto;
+      @include large {
+        width: 48.65%;
+      }
+      @include small-medium {
+        width: 100%;
+        height: 180px;
+      }
+    }
+    &Right {
+      width: 58%;
+      @include large {
+        width: 48.15%;
+      }
+      @include small-medium {
+        width: 100%;
+        height: 182px;
+        overflow: hidden;
+      }
+    }
+  }
+}

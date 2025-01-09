@@ -1,0 +1,23 @@
+  @use "styles/mixin" as *;
+
+.container {
+  padding: 0 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  @include medium {
+    padding: 0 30px;
+  }
+  @include small {
+    padding: 0 20px;
+  }
+}
+.slideContainer {
+  padding: 0 0 0 20px;
+  max-width: none;
+  @include medium {
+    padding: 0 0 0 30px;
+  }
+  @include small {
+    padding: 0 0 0 20px;
+  }
+}

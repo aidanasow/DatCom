@@ -1,0 +1,14 @@
+@use "styles/mixin" as *;
+.list {
+  margin: 32px 0 120px;
+}
+.accordion {
+  padding: 16px !important;
+  align-items: start !important;
+  @include medium {
+    padding: 14px 20px !important;
+  }
+  @include small {
+    padding: 6px !important;
+  }
+}

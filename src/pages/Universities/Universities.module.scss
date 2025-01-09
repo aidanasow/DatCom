@@ -1,0 +1,37 @@
+@use "styles/mixin" as *;
+
+.wrapper {
+  margin-top: 32px;
+
+  .cardWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+
+    @include medium {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include small {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .searchBar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+
+    @include small {
+      justify-content: space-between;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

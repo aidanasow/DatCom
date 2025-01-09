@@ -1,0 +1,60 @@
+@use "_variables.scss" as *;
+
+@font-face {
+  font-family: nunito-ExtraLight;
+  src: url(./fonts/Nunito-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: nunito-Light;
+  src: url(./fonts/Nunito-Light.ttf);
+}
+
+@font-face {
+  font-family: nunito-Regular;
+  src: url(./fonts/Nunito-Regular.ttf);
+}
+
+@font-face {
+  font-family: nunito-Medium;
+  src: url(./fonts/Nunito-Medium.ttf);
+}
+
+@font-face {
+  font-family: nunito-SemiBold;
+  src: url(./fonts/Nunito-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: nunito-Bold;
+  src: url(./fonts/Nunito-Bold.ttf);
+}
+
+@font-face {
+  font-family: nunito-ExtraBold;
+  src: url(./fonts/Nunito-ExtraBold.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--color-black);
+  font-family: nunito-Light;
+  position: relative;
+}
+
+a {
+  font-family: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
