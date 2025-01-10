@@ -1,10 +1,14 @@
 import { ClockIcon, DatComLogo, LocationIcon, PhoneIcon } from "assets/index";
 import classes from "./Footer.module.scss";
-import { navigationData, PhoneNumberData } from "utils/constants/Constants";
+import { navigationData } from "utils/constants/Constants";
 import { Link } from "react-router-dom";
 import { Container, SocialMedia, Typography } from "ui/index";
+import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
+import novaLogo from "assets/images/novaLogo.png";
 
 export const Footer = () => {
+  const {contacts} = useContactsStore();
+
   return (
     <div className={classes.footer}>
       <Container>
@@ -28,9 +32,7 @@ export const Footer = () => {
                 weight="regular"
                 className={classes.workInfo_wrap_text}
               >
-                БЦ Victory,
-                <br />
-                ул. Ибраимова 103, <br />2 этаж; правое крыло
+                {contacts?.address}
               </Typography>
             </div>
             <div
@@ -43,7 +45,7 @@ export const Footer = () => {
                 className={classes.workInfo_wrap_text}
                 weight="regular"
               >
-                c 10:00 до 18:00
+                {contacts?.shift}
               </Typography>
             </div>
           </div>
@@ -52,9 +54,9 @@ export const Footer = () => {
               <PhoneIcon />
             </div>
             <div className={classes.connection_list}>
-              {PhoneNumberData.map((item, key) => (
-                <a href="#" key={key} className={classes.phoneItem}>
-                  <Typography weight="regular">{item}</Typography>
+              {contacts?.phonenumber?.map((item, index) => (
+                <a href="tel: ${item.phonenumber}"  key={index} className={classes.phoneItem}>
+                  <Typography weight="regular">{item.phonenumber}</Typography>
                 </a>
               ))}
             </div>
@@ -70,9 +72,9 @@ export const Footer = () => {
           <Typography variant="smallBody">
             <a href="#">Политика конфиденциальности</a>
           </Typography>
-          <Typography variant="smallBody">
-            ЗДЕСЬ ДОЛЖНО БЫТЬ НАЗВАНИЕ НАШЕЙ КОМАНДЫ😅
-          </Typography>
+          <div>
+            <img src={novaLogo} alt="made by Novalabs"/>
+          </div>
         </div>
       </Container>
     </div>

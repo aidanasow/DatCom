@@ -73,12 +73,6 @@ export const generateBreadcrumbs = (key, thirdElement = null) => {
   return baseBreadcrumbs;
 };
 
-export const PhoneNumberData = [
-  "+996 505‒28‒63‒85",
-  "+996 505‒37‒13‒62",
-  "+996 70‒671‒88‒88",
-];
-
 
 
 export const ContactsData = [

@@ -10,7 +10,7 @@ export const Layout = () => {
     <div className={classes.block}>
       <Header />
       <main>{navigation.state === "loading" ? <Loader /> : <Outlet />}</main>
-       {/*<Footer />*/}
+       <Footer />
     </div>
   );
 };
