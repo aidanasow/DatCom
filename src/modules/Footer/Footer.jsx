@@ -55,7 +55,7 @@ export const Footer = () => {
             </div>
             <div className={classes.connection_list}>
               {contacts?.phonenumber?.map((item, index) => (
-                <a href="tel: ${item.phonenumber}"  key={index} className={classes.phoneItem}>
+                <a href={`tel:${item.phonenumber}`}   key={index} className={classes.phoneItem}>
                   <Typography weight="regular">{item.phonenumber}</Typography>
                 </a>
               ))}

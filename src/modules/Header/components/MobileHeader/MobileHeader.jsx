@@ -14,7 +14,7 @@ export const MobileHeader = () => {
   const [isClose, setIsClose] = useState(true);
   const nav = useLocation();
   const menuRef = useRef(null);
-const {t}=useTranslation();
+  const {t}=useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
   useEffect(() => {
     setIsClose(true);

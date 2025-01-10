@@ -5,10 +5,12 @@ import { Button, Typography } from "ui/index";
 import { navigationData, PATHS } from "utils/constants/Constants";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 
 export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
   const { t } = useTranslation();
   const location = useLocation();
+  const {contacts} = useContactsStore();
 
   const scrollToElement = () => {
     const element = document.getElementById("services");
@@ -81,9 +83,14 @@ export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
             </Link>
           </Button>
           <div className={classes.phone}>
-            <a href="tel:+996701262677">
-              <Typography weight="semiBold">+996 505‒28‒63‒85</Typography>
-            </a>
+
+            {contacts.phonenumber && contacts.phonenumber.length > 0 ? (
+                <a href={`tel:${contacts.phonenumber[0].phonenumber}`}>
+                  <Typography weight={"smallBold"}>{contacts.phonenumber[0].phonenumber}</Typography>
+                </a>
+            ) : (
+                <Typography>+996 505‒28‒63‒85</Typography>
+            )}
           </div>
         </div>
       </div>

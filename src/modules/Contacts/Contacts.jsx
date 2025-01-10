@@ -15,7 +15,7 @@ import {useState} from "react";
 
 export const Contacts = () => {
     const {contacts} = useContactsStore();
-    const {shift, address, phoneNumber, instagram, telegram} = contacts || {};
+    const {shift, address, phonenumber, instagram, telegram} = contacts || {};
     const isTablet = useMediaQuery("(max-width: 900px)");
 
     const [state, setState] = useState(false);
@@ -67,9 +67,9 @@ export const Contacts = () => {
                             <Typography variant="h4" color="white" weight="bold">
                                 Телефон:
                             </Typography>
-                            {phoneNumber &&
-                                phoneNumber.length > 0 &&
-                                phoneNumber.map((number, key) => (
+                            {phonenumber &&
+                                phonenumber.length > 0 &&
+                                phonenumber.map((number, key) => (
                                     <Typography color="white" key={key}>
                                         {number.phonenumber}
                                     </Typography>
