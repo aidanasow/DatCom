@@ -6,8 +6,11 @@ import { PaginationComponent } from "modules/PaginationComponent/PaginationCompo
 import { InputAdornment, MenuItem, TextField } from "@mui/material";
 import { Search } from "assets/index";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
+import {Loader} from "pages/Loader/Loader.jsx";
+import {useTranslation} from "react-i18next";
 
 export const Universities = () => {
+    const {t}=useTranslation();
   const [offset, setOffset] = useState(0);
   const [state, setState] = useState({
     search: "",
@@ -16,13 +19,13 @@ export const Universities = () => {
   });
   const limit = 12;
 
-  const { universities, countryList, programmList, count } =
+  const { universities, countryList, programmList, count, loading } =
     useUniversitiesStore(offset, limit, state);
 
   const onChange = (_, page) => {
     setOffset((page - 1) * limit);
   };
-
+    console.log(count)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -31,17 +34,17 @@ export const Universities = () => {
       [name]: value,
     }));
   };
-
+    if (loading) return <Loader/>
   return (
       <>
           <Breadcrumbs breadcrumbKey={"universities"}/>
           <div className={classes.wrapper}>
               <Container>
-                  <Typography variant="heading">университеты</Typography>
+                  <Typography variant="heading">{t("titles.universities")} </Typography>
                   <div className={classes.searchBar}>
                       <TextField
                           name="search"
-                          label="Поиск"
+                          label={t("search.search")}
                           variant="outlined"
                           value={state.search}
                           onChange={handleInputChange}
@@ -80,7 +83,7 @@ export const Universities = () => {
 
                       <TextField
                           name="country"
-                          label="Страна"
+                          label={t("search.country")}
                           select
                           defaultValue=""
                           value={state.country}
@@ -114,7 +117,7 @@ export const Universities = () => {
 
                       <TextField
                           name="programm"
-                          label="Программа обучения"
+                          label={t("search.eduProgram")}
                           select
                           defaultValue=""
                           value={state.programm}
@@ -147,16 +150,17 @@ export const Universities = () => {
                       </TextField>
                   </div>
                   <div className={classes.cardWrapper}>
-                      {universities.map((item, key) => (
+                      {universities.length>0? universities.map((item, key) => (
                           <CustomCard
                               key={key}
                               variant="students"
                               title={item.title}
                               image={item.image}
                               description={item.description}
+                              isUni
                               link={`/universities/${item.id}`}
                           />
-                      ))}
+                      )) : <Typography>{t("titles.noData")}</Typography>}
                   </div>
 
                   <PaginationComponent count={count} onChange={onChange}/>

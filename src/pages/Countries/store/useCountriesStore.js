@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useCountriesStore = (offset = 0, limit = 9) => {
+  const { i18n}=useTranslation();
   const [countries, setCountries] = useState([]);
   const [count, setCount] = useState(0);
   const { fetchData, loading } = useApiStore();
@@ -18,8 +20,8 @@ export const useCountriesStore = (offset = 0, limit = 9) => {
         throw new Error(error);
       }
     };
-    fetchCountriesData();
-  }, [offset, fetchData, limit]);
+    fetchCountriesData(i18n.language);
+  }, [offset, fetchData, limit, i18n.language]);
 
   return {
     countries,

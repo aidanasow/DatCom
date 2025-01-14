@@ -5,9 +5,10 @@ import {Container, Typography} from "ui/index";
 import {ArrowRight} from "assets/icons/ArrowRight.jsx";
 import classes from "./Breadcrumbs.module.scss";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
+import {useTranslation} from "react-i18next";
 
 const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
     const breadcrumbs = generateBreadcrumbs(breadcrumbKey, thirdElement);
     const isDesktop=useMediaQuery("(min-width: 900px)");
 
@@ -21,7 +22,7 @@ const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
                             {breadcrumb.route ? (
                                 <NavLink className={classes.link} to={breadcrumb.route}>
                                     <Typography truncate={30} variant={"h6"} color={breadcrumb.isActive? " ":"gray2"}>
-                                        {breadcrumb.text}
+                                        {t(breadcrumb.text)}
                                     </Typography>
                                     {index < breadcrumbs.length - 1 && (
                                         <ArrowRight color={"#828282"} size={14} />
@@ -29,7 +30,7 @@ const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
                                 </NavLink>
                             ) : (
                                 <Typography truncate={30} variant={"h6"} color={breadcrumb.isActive? "":"gray2"}>
-                                    {breadcrumb.text}
+                                    {t(breadcrumb.text)}
                                 </Typography>
                             )}
                         </li>

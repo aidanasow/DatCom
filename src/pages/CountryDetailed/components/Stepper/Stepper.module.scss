@@ -1,3 +1,4 @@
+@use "styles/mixin" as *;
 .block {
   margin-top: 32px;
   padding-left: 11px;
@@ -11,9 +12,25 @@
     max-width: 1030px;
     padding: 20px;
     margin-left: 22px;
+    @include  medium {
+      padding: 14px;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    @include small-medium {
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px;
+    }
 
     .stepText {
-      max-width: 591px;
+      width: 57.38%;
+      @include medium {
+        width: 48.6%;
+      }
+      @include small-medium {
+        width: 100%;
+      }
 
       .label {
         margin-bottom: 8px;
@@ -21,8 +38,14 @@
     }
 
     .image {
-      width: 380px;
+      width: 36.9%;
       height: 246px;
+      @include medium {
+        width: 45.1%;
+      }
+      @include small-medium {
+        width: 100%;
+      }
 
       img {
         border-radius: 14px;

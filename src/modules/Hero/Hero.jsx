@@ -14,7 +14,7 @@ export const Hero = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const isMobile=useMediaQuery("(max-width: 500px)");
-  const { fetchData } = useApiStore();
+  const { fetchData  } = useApiStore();
 
   useEffect(() => {
     const fetchMainPage = async () => {
@@ -33,9 +33,8 @@ export const Hero = () => {
     fetchMainPage(i18n.language);
   }, [fetchData, i18n.language]);
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
+
 
   const backgroundImage = data?.length > 0 ? data[0]?.image : imageEmpty;
 
@@ -61,7 +60,7 @@ export const Hero = () => {
           </Typography>
           <Button size="medium" fullWidth={isMobile}>
             <Link to={PATHS.form}>
-              <Typography>{t("header.btn")}</Typography>
+              <Typography>{t("buttonsText.request")}</Typography>
             </Link>
           </Button>
         </div>

@@ -9,6 +9,10 @@
 
   @include medium {
     height: 360px;
+    margin-bottom: 80px;
+
+    @include small-medium {
+      margin-bottom: 60px;}
   }
 
   &_left {

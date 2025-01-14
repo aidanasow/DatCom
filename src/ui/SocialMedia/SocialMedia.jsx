@@ -1,7 +1,17 @@
-import { SocialMediaData } from "utils/constants/Constants";
 import classes from "./SocialMedia.module.scss";
+import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
+import {InstagramIcon} from "assets/icons/InstagramIcon.jsx";
+import {TelegramIcon} from "assets/icons/TelegramIcon.jsx";
+import {WhatsappIcon} from "assets/icons/WhatsappIcon.jsx";
 
 export const SocialMedia = ({ header }) => {
+  const {contacts, loading,phone} = useContactsStore();
+  const SocialMediaData = [
+    { icon: <InstagramIcon />, link: contacts.instagram },
+    { icon: <TelegramIcon />, link: contacts.telegram },
+    {icon: <WhatsappIcon />, link: `https://wa.me/${phone}` },
+  ];
+
   return (
     <div className={classes.block}>
       {SocialMediaData.map((media, key) => (
@@ -9,6 +19,7 @@ export const SocialMedia = ({ header }) => {
           href={media.link}
           key={key}
           className={`${header && classes.header} ${classes.link}`}
+          target="_blank"
         >
           {media.icon}
         </a>

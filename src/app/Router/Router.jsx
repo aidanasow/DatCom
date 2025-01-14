@@ -7,10 +7,10 @@ import {
   DetailedUniversity,
   Form,
   Home,
-  NotFound,
   Reviews,
   Students,
   Universities,
+  NotFound,
 } from "pages/index";
 
 export const Router = createBrowserRouter([

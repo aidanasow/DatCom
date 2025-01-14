@@ -12,9 +12,11 @@ import {
 } from "assets/index";
 import {useMediaQuery} from "utils/helpers/useMedia";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 export const Contacts = () => {
     const {contacts} = useContactsStore();
+    const {t}=useTranslation();
     const {shift, address, phonenumber, instagram, telegram} = contacts || {};
     const isTablet = useMediaQuery("(max-width: 900px)");
 
@@ -26,7 +28,7 @@ export const Contacts = () => {
 
     return (
         <>
-            <Typography variant="heading">Контакты</Typography>
+            <Typography variant="heading">{t("titles.contacts")}</Typography>
             <div className={classes.block}>
                 <div
                     className={`${classes.block_left} ${
@@ -39,7 +41,7 @@ export const Contacts = () => {
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
-                                Время работы:
+                                {t("contacts.time")}:
                             </Typography>
                             <Typography color="white">
                                 {shift ? shift : "No shift provided"}
@@ -52,7 +54,7 @@ export const Contacts = () => {
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
-                                Адрес:
+                                {t("contacts.address")}:
                             </Typography>
                             <Typography color="white">
                                 {address ? address : "No address provided"}
@@ -65,7 +67,7 @@ export const Contacts = () => {
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
-                                Телефон:
+                                {t("contacts.phone")}:
                             </Typography>
                             {phonenumber &&
                                 phonenumber.length > 0 &&
@@ -82,7 +84,7 @@ export const Contacts = () => {
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
-                                Инстаграм:
+                                {t("contacts.insta")}:
                             </Typography>
                             <Typography color="white">
                                 <a href={instagram} target="_blank">
@@ -97,7 +99,7 @@ export const Contacts = () => {
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
-                                Телеграм:
+                                {t("contacts.telegram")}:
                             </Typography>
                             <Typography color="white">
                                 <a href={telegram} target="_blank">

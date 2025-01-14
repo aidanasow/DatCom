@@ -13,12 +13,12 @@ import {useState} from "react";
 import {Container, CustomCard, Typography} from "ui/index";
 import {useCountriesStore} from "pages/Countries/store/useCountriesStore.js";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
+import {useTranslation} from "react-i18next";
 
 export const Home = () => {
+    const {t, i18n}=useTranslation();
     const limit = 6;
-
     const {students} = useStudentsStore(0, limit);
-
     const [open, setOpen] = useState(false);
     const [student, setStudent] = useState({});
     const {countries, count} = useCountriesStore(0, limit);
@@ -27,21 +27,21 @@ export const Home = () => {
     const miniTab = useMediaQuery("(max-width: 750px)")
     const laptop = useMediaQuery("(max-width: 1200px)")
 
-    let maxCards = 2.2;
+    let maxCards =2;
     if (laptop) {
         maxCards = 1.7;
     }
     if (tablet) {
-        maxCards = 1.39;
+        maxCards = 1.33;
     }
     if (phone) {
         maxCards = 2
     }
-    let cards = 3.2
+    let cards = 3
     if (laptop) cards = 2.5
-    if (tablet) cards = 2.1
-    if (miniTab) cards = 1.7
-    if (phone) cards = 1.2
+    if (tablet) cards = 2
+    if (miniTab) cards = 1.8
+    if (phone) cards = 1.3
     const openModal = (student) => {
         setOpen(true);
         setStudent(student);
@@ -50,16 +50,16 @@ export const Home = () => {
     const closeModal = () => {
         setOpen(false);
     };
-
     return (
         <>
             <Hero/>
             <Container>
                 <AboutUs/>
-                <Typography variant="heading">страны</Typography>
+                <Typography variant="heading">{t("titles.countries")}</Typography>
             </Container>
             <Container slide>
                 <Slider
+                    minCardWidth={295}
                     maxCards={maxCards}
                     sliderList={countries}
                     renderSlide={(item) => (
@@ -76,7 +76,7 @@ export const Home = () => {
             <div  id={"services"}>
                 <Container>
                     <Services/>
-                    <Typography variant="heading">поступившие студенты</Typography>
+                    <Typography variant="heading">{t("titles.adStudents")}</Typography>
                 </Container>
             </div>
             <Container slide>

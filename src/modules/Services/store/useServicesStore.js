@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useServicesStore = (offset = 0, limit = 5) => {
+  const { i18n}=useTranslation();
   const [services, setServices] = useState([]);
   const [count, setCount] = useState(0);
   const { fetchData, loading } = useApiStore();
@@ -19,7 +21,7 @@ export const useServicesStore = (offset = 0, limit = 5) => {
       }
     };
     fetchStudentsData();
-  }, [offset, fetchData, limit]);
+  }, [offset, fetchData, limit, i18n.language]);
 
   return {
     services,

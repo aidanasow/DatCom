@@ -2,6 +2,7 @@ import Pagination from "@mui/material/Pagination";
 import { Box } from "@mui/material";
 
 export const PaginationComponent = ({ count, onChange }) => {
+    // if (count<1 || count===1) return null;
   return (
     <Box
       component="div"
@@ -10,7 +11,6 @@ export const PaginationComponent = ({ count, onChange }) => {
         justifyContent: "center",
         alignItems: "center",
         mt: 2,
-        mb: "120px",
       }}
     >
       <Pagination

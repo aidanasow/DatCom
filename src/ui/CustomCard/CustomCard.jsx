@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Typography } from "..";
 import classes from "./CustomCard.module.scss";
 import { ArrowMore } from "assets/index";
+import {useTranslation} from "react-i18next";
 
 const cardVariant = {
   country: {
@@ -25,9 +26,10 @@ export const CustomCard = ({
   description,
   link,
   modal,
+    isUni=false
 }) => {
   const cardConfig = cardVariant[variant];
-
+  const {t}=useTranslation();
   if (!cardConfig) {
     return null;
   }
@@ -40,10 +42,10 @@ export const CustomCard = ({
         <img src={image} alt={title} />
       </div>
       <div className={classes.infoBlock}>
-        <Typography variant="h3" weight="regular">
+        <Typography variant="h3" weight="regular" truncate={isUni? 30:15} className={`${isUni? classes.bigHead : classes.smallHead}`}>
           {title}
         </Typography>
-        <Typography className={desc}>{description}</Typography>
+        <Typography className={`${desc} ${isUni? classes.uniDesc: ""}`}>{description}</Typography>
         {modal ? (
           <Typography
             weight="regular"
@@ -51,13 +53,13 @@ export const CustomCard = ({
             className={btn}
             onClick={modal}
           >
-            Подробнее <ArrowMore />
+            {t("buttonsText.details")} <ArrowMore />
           </Typography>
         ) : (
           <div className={classes.btnContainer}>
             <Link to={link}>
               <Typography weight="regular" pointer="pointer" className={btn}>
-                Подробнее <ArrowMore />
+                {t("buttonsText.details")} <ArrowMore />
               </Typography>
             </Link>
           </div>

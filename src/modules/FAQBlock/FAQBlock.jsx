@@ -4,14 +4,16 @@ import { PlusIcon } from "assets/index";
 import { useFAQBlockStore } from "./store/useFAQBlockStore";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
+import {useTranslation} from "react-i18next";
 
 export const FAQBlock = () => {
+    const {t}=useTranslation();
   const { questions } = useFAQBlockStore();
   const isSmall=useMediaQuery("(max-width: 900px)");
 
   return (
       <>
-        <Typography variant="heading">часто задаваемые вопросы</Typography>
+        <Typography variant="heading">{t("titles.questions")}</Typography>
         <div className={classes.list}>
           {questions.map((data, key) => (
               <Accordion

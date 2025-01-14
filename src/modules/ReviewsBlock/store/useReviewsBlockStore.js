@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useReviewsBlockStore = ({ offset = 0, limit = 3 }) => {
+  const { i18n}=useTranslation();
   const [reviews, setReviews] = useState([]);
   const { fetchData, loading } = useApiStore();
 
@@ -18,7 +20,7 @@ export const useReviewsBlockStore = ({ offset = 0, limit = 3 }) => {
     };
 
     fetchReviews();
-  }, [offset, limit, fetchData]);
+  }, [offset, limit, fetchData, i18n.language]);
 
   return {
     reviews,

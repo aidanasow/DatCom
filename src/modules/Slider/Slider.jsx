@@ -8,7 +8,7 @@ export const Slider = ({
   sliderList = [],
   renderSlide,
   minCardWidth = 300,
-  maxCards = 3.2,
+  maxCards = 3.2, spaceBetWeen=16
 }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -40,7 +40,7 @@ export const Slider = ({
       <Swiper
         className={classes.swiper}
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={16}
+        spaceBetween={spaceBetWeen}
         allowTouchMove={true}
         slidesPerView={slidesPerView}
         navigation={{
@@ -56,7 +56,7 @@ export const Slider = ({
           setIsEnd(swiper.isEnd);
         }}
       >
-        {sliderList?.map((item, key) => (
+        { sliderList?.map((item, key) => (
           <SwiperSlide key={key} className={classes.slide}>
             {renderSlide(item)}
           </SwiperSlide>

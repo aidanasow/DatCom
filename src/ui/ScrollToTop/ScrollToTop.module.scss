@@ -1,0 +1,30 @@
+@use "styles/mixin" as *;
+
+.iconContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  @include medium {
+    right: 0;
+  }
+}
+.whatsAppIcon, .arrowTopIcon {
+  width: 80px;
+  height: 80px;
+  @include medium {
+    width: 60px;
+    height: 60px;
+  }
+}
+.arrowTopIcon {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

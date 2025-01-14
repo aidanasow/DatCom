@@ -1,16 +1,22 @@
-import { Footer, Header } from "modules/index";
-import { Outlet, useNavigation } from "react-router-dom";
+import {Footer, Header} from "modules/index";
+import {Outlet} from "react-router-dom";
 import classes from "./Layout.module.scss";
 import { Loader } from "pages/index";
+import {ScrollToTop} from "ui/ScrollToTop/ScrollToTop.jsx";
+import {Suspense} from "react";
 
 export const Layout = () => {
-  const navigation = useNavigation();
 
-  return (
-    <div className={classes.block}>
-      <Header />
-      <main>{navigation.state === "loading" ? <Loader /> : <Outlet />}</main>
-       <Footer />
-    </div>
-  );
+    return (
+        <div className={classes.block}>
+            <Header/>
+            <main>
+                <Suspense fallback={<Loader/>}>
+                    <Outlet/>
+                </Suspense>
+            </main>
+            <ScrollToTop/>
+            <Footer/>
+        </div>
+);
 };

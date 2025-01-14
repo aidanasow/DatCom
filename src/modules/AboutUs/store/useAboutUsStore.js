@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useAboutUsStore = () => {
+  const { i18n}=useTranslation();
   const [data, setData] = useState([]);
   const { fetchData, loading } = useApiStore();
 
@@ -16,7 +18,7 @@ export const useAboutUsStore = () => {
     };
 
     fetchAboutUs();
-  }, [fetchData]);
+  }, [fetchData, i18n.language]);
 
   return {
     data,

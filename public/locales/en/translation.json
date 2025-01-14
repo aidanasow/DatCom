@@ -1,6 +1,62 @@
 {
-  "text": "Hello World",
-  "header": {
-    "btn": "Make a request"
+  "buttonsText": {
+    "request": "Make a request",
+    "details": "Details",
+    "seeAll": "See all",
+    "goToHome": "Go to home"
+  },
+  "nav" : {
+    "main":"Main",
+    "services": "Services",
+    "countries": "Countries",
+    "universities" : "Universities",
+    "students": "Students",
+    "reviews": "Reviews",
+    "policy": "Privacy policy"
+  },
+  "titles": {
+    "noData": "No data",
+    "about": "About datcom",
+    "services": "Services",
+    "aboutService": "What is included in the service:",
+    "countries": "Countries",
+    "adStudents": "Admitted students",
+    "reviews": "Reviews",
+    "reviewsDet": "Feedback from students and their parents about the admission and study process for abroad",
+    "ratings": "ratings",
+    "questions": "Frequently asked questions",
+    "contacts": "Contacts",
+    "aboutCountry": "About country",
+    "universities" : "Universities",
+    "photoGallery": "Photo gallery",
+    "alumni": "Notable alumni",
+    "videoReviews": "video reviews",
+    "modal": "Your application has been sent successfully",
+    "notFound": "The page you are requesting does not exist!",
+    "notFound2": "Go to the Home Page and try to find the information you need there!",
+    "fullName": "Full name",
+    "number": "Phone number",
+    "country": "Country",
+    "direction": "Direction of study",
+    "specialty": "Desired specialty"
+  },
+  "contacts": {
+    "time": "Work time",
+    "address": "Address",
+    "phone": "Telephone",
+    "insta": "Instagram",
+    "telegram": "Telegram"
+  },
+  "form": {
+    "fillForm": "Fill out the form to begin the admission process",
+    "validation": "This field is required.",
+    "fullName": "Enter your full name",
+    "error": "Error when submitting form:"
+  },
+
+  "search": {
+    "search": "Search",
+    "country": "Country",
+    "eduProgram": "Training program"
   }
 }

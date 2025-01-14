@@ -5,6 +5,7 @@ import StepContent from "@mui/material/StepContent";
 import { Container, Typography } from "ui/index";
 import classes from "./Stepper.module.scss";
 import { styled } from "@mui/material/styles";
+import {useTranslation} from "react-i18next";
 
 const CustomStepLabel = styled(StepLabel)(() => ({
   marginTop: "-12px",
@@ -41,9 +42,11 @@ const CustomStepContent = styled(StepContent)(() => ({
 }));
 
 export const CountryStepper = ({ list }) => {
+  const {t}=useTranslation();
   return (
     <Container>
-      <Typography variant="heading">О стране</Typography>
+      <Typography variant="heading">{t("titles.aboutCountry")}</Typography>
+      {(list?.length===0) &&  <Container> {t("titles.noData")}</Container>}
       <Stepper orientation="vertical" className={classes.block}>
         {list?.map((step) => (
           <Step key={step.id} expanded active>

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useFAQBlockStore = (offset = 0, limit = 4) => {
+  const { i18n}=useTranslation();
   const [questions, setQuestions] = useState([]);
   const { fetchData, loading } = useApiStore();
 
@@ -18,7 +20,7 @@ export const useFAQBlockStore = (offset = 0, limit = 4) => {
     };
 
     fetchQuestions();
-  }, [offset, fetchData, limit]);
+  }, [offset, fetchData, limit, i18n.language]);
 
   return {
     questions,

@@ -72,14 +72,14 @@ export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
             {navigationData.map((item, key) => (
                 <div key={key}>
                   <Link to={item.path} key={key} onClick={scrollToElement}>
-                    <Typography weight="regular">{item.nav}</Typography>
+                    <Typography weight="regular">{t(item.nav)}</Typography>
                   </Link>
                 </div>
             ))}
           </div>
           <Button size="medium">
             <Link to={PATHS.form}>
-              <Typography weight="regular">{t("header.btn")}</Typography>
+              <Typography weight="regular">{t("buttonsText.request")}</Typography>
             </Link>
           </Button>
           <div className={classes.phone}>

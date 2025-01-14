@@ -9,8 +9,10 @@ import ReactPlayer from "react-player";
 import { StarEmptyIcon } from "assets/icons/StarEmptyIcon";
 import { Loader } from "..";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
+import {useTranslation} from "react-i18next";
 
 export const Reviews = () => {
+  const {t}=useTranslation();
   const [offset, setOffset] = useState(0);
   const [ratingData, setRatingData] = useState({});
   const limit = 6;
@@ -39,10 +41,9 @@ export const Reviews = () => {
         <Breadcrumbs breadcrumbKey={"reviews"}/>
         <div className={classes.wrapper}>
           <Container>
-            <Typography variant="heading">Отзывы</Typography>
+            <Typography variant="heading">{t("titles.reviews")}</Typography>
             <Typography variant="h3" weight="semiBold" className={classes.semiText}>
-              Отзывы студентов и их родителей о процессе поступления и обучения за
-              рубежом
+              {t("titles.reviewsDet")}
             </Typography>
             <div className={classes.reviewWrapper}>
               <div className={classes.starWrapper}>
@@ -60,7 +61,7 @@ export const Reviews = () => {
               </div>
               <div className={classes.reviewData}>
                 <Typography weight="regular">{ratingData?.average}</Typography>
-                <Typography color="gray2">{reviews.length} оценок</Typography>
+                <Typography color="gray2">{reviews.length} {t("titles.ratings")}</Typography>
               </div>
             </div>
 
@@ -72,8 +73,8 @@ export const Reviews = () => {
 
             <PaginationComponent count={count} onChange={onChange}/>
 
-            <div>
-              <Typography variant="heading">Видео-отзывы</Typography>
+            <div className={classes.youtubeWrapper}>
+              <Typography variant="heading">{t("titles.videoReviews")}</Typography>
               <div>
                 <Slider
                     amount={3}

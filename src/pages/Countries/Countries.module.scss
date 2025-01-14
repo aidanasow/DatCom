@@ -1,7 +1,13 @@
 @use "styles/mixin" as *;
 
 .wrapper {
-  margin-top: 32px;
+  margin: 32px 0 120px;
+  @include medium {
+    margin: 40px 0 80px;
+  }
+  @include small-medium {
+    margin: 24px 0 60px;
+  }
 
   .cardWrapper {
     display: grid;

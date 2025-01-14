@@ -4,13 +4,15 @@ import { useDetailedUniversityStore } from "./store/useDetailedUniversityStore";
 import { useParams } from "react-router-dom";
 import { Slider, ReviewsBlock, ModalComponent } from "modules/index";
 import { useState } from "react";
-import { Grid2 as Grid } from "@mui/material";
 import { useMediaQuery } from "utils/helpers/useMedia";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
+import {Loader} from "pages/Loader/Loader.jsx";
+import {useTranslation} from "react-i18next";
 
 export const DetailedUniversity = () => {
   const { id } = useParams();
-  const { university, students } = useDetailedUniversityStore(id);
+  const {t}=useTranslation();
+  const { university, students, loading } = useDetailedUniversityStore(id);
   const isTablet = useMediaQuery("(max-width: 900px)");
   const isMobile = useMediaQuery("(max-width: 400px)");
 
@@ -33,15 +35,13 @@ export const DetailedUniversity = () => {
           <Container>
             <Typography variant="heading">{university.title}</Typography>
 
-            <Grid
-                container
-                spacing={3}
-                sx={{marginTop: "20px", marginBottom: "20px"}}
+            <div
+                className={classes.wrapperBlock}
             >
-              <Grid size={{xs: 12, md: 7}} className={classes.imageWrapper}>
+              <div className={classes.imageWrapper}>
                 <img src={university.image} alt={university.title}/>
-              </Grid>
-              <Grid size={{xs: 12, md: 5}} className={classes.articleBlock}>
+              </div>
+              <div className={classes.articleBlock}>
                 <Typography
                     variant="h3"
                     weight="bold"
@@ -53,34 +53,37 @@ export const DetailedUniversity = () => {
                 <Typography variant="h5">
                   {university.secondary_description}
                 </Typography>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
 
             <div className={classes.description}>
               <Typography variant="h5">{university.description}</Typography>
             </div>
 
             <div className={classes.students}>
-              <Typography variant="heading">Известные выпускники</Typography>
+              {
+                students.length>0&& <>
+                    <Typography variant="heading">{t("titles.alumni")}</Typography>
 
-              <div className={classes.studentsSlider}>
-                <Slider
-                    amount={isMobile ? 1 : isTablet ? 2 : 2.8}
-                    sliderList={students}
-                    renderSlide={(item) => (
-                        <CustomCard
-                            variant="students"
-                            title={item.title}
-                            image={item.image}
-                            description={item.description}
-                            modal={() => openModal(item)}
-                        />
-                    )}
-                />
-              </div>
+                    <div className={classes.studentsSlider}>
+                      <Slider
+                          amount={isMobile ? 1 : isTablet ? 2 : 2.8}
+                          sliderList={students}
+                          renderSlide={(item) => (
+                              <CustomCard
+                                  variant="students"
+                                  title={item.title}
+                                  image={item.image}
+                                  description={item.description}
+                                  modal={() => openModal(item)}
+                              />
+                          )}
+                      />
+                    </div>
+                  </>
+              }
             </div>
 
-            <div className={classes.reviews}></div>
           </Container>
           <ReviewsBlock/>
 

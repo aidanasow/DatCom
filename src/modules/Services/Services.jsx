@@ -23,14 +23,12 @@ export const Services = () => {
       setTitles(titlesArray);
       setDescriptions(servicesArray);
       setImage(services[0].image);
-    } else {
-      console.log("No data available or still loading");
     }
   }, [services]);
   if (services.length===0 ) return <div> </div>
   return (
       <>
-        <Typography variant="heading">Услуги</Typography>
+        <Typography variant="heading">{t("titles.services")}</Typography>
         <div className={classes.block}>
           <div className={classes.block_top}>
             {titles.map((title, key) => (
@@ -50,7 +48,7 @@ export const Services = () => {
                   variant="h3"
                   weight="regular"
               >
-                Что входит в услугу:
+                {t("titles.aboutService")}
               </Typography>
               <Typography>{descriptions[desc]}</Typography>
             </div>
@@ -61,7 +59,7 @@ export const Services = () => {
               <div className={classes.btnBlock}>
                 <Button variant="secondary" fullWidth size="default">
                   <Link to={PATHS.form}>
-                    <Typography weight="regular">{t("header.btn")}</Typography>
+                    <Typography weight="regular">{t("buttonsText.request")}</Typography>
                   </Link>
                 </Button>
               </div>

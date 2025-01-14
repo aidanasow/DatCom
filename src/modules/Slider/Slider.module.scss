@@ -1,6 +1,8 @@
 @use "styles/mixin" as *;
 .swiper {
   margin-bottom: 120px;
+  display: flex;
+  height: 100%;
   @include medium {
     margin-bottom: 80px;
   }
@@ -18,6 +20,16 @@
     gap: 20px;
     @include small {
       display: none;
+    }
+    .isGallery {
+      display: flex;
+      align-items: center;
+      width: 1290px;
+      justify-content: space-between;
+      position: absolute;
+      z-index: 100;
+      top: 175px;
+      left: -25px;
     }
     button {
       outline: none;

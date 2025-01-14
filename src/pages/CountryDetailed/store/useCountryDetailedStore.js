@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useApiStore } from "utils/requester/requester";
+import {useTranslation} from "react-i18next";
 
 export const useCountryDetailedStore = (id) => {
+  const { i18n}=useTranslation();
   const [country, setCountry] = useState({});
-  const { fetchData } = useApiStore();
+  const { fetchData , loading} = useApiStore();
 
   useEffect(() => {
     if (!id) return;
@@ -18,9 +20,9 @@ export const useCountryDetailedStore = (id) => {
     };
 
     fetchCountry();
-  }, [id, fetchData]);
+  }, [id, fetchData, i18n.language]);
 
   return {
-    country,
+    country, loading
   };
 };

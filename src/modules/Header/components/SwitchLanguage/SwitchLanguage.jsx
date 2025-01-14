@@ -17,7 +17,7 @@ export const SwitchLanguage = () => {
 
     const languages = [
         { code: "ru", label: "Рус", icon: <RusIcon /> },
-        { code: "en", label: "Eng", icon: <KGIcon /> },
+        { code: "en", label: "En", icon: <KGIcon /> },
     ];
 
     const selectedLanguage = languages.find((lang) => lang.code === i18n.language);

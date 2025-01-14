@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { useReviewsBlockStore } from "./store/useReviewsBlockStore";
 import { useMediaQuery } from "utils/helpers/useMedia";
 import {ArrowRight} from "assets/icons/ArrowRight.jsx";
+import {useTranslation} from "react-i18next";
 
 export const ReviewsBlock = () => {
+  const {t}=useTranslation();
   const isTablet = useMediaQuery("(max-width: 900px)");
   const isMobile = useMediaQuery("(max-width: 500px)");
 
@@ -21,9 +23,9 @@ export const ReviewsBlock = () => {
     <div className={classes.block}>
       <Container>
         <div className={classes.heading}>
-          <Typography variant="heading">отзывы</Typography>
+          <Typography variant="heading">{t("titles.reviews")}</Typography>
           <Link to={PATHS.reviews}>
-            <Typography weight="regular">Смотреть все</Typography>
+            <Typography weight="regular">{t("buttonsText.seeAll")}</Typography>
           </Link>
         </div>
         <div className={classes.list}>
@@ -33,7 +35,7 @@ export const ReviewsBlock = () => {
         </div>
         <div className={classes.link}>
           <Link to={PATHS.reviews}>
-            <Typography weight="regular">Смотреть все</Typography>
+            <Typography weight="regular">{t("buttonsText.seeAll")}</Typography>
           </Link>
           <ArrowRight size={24}/>
         </div>

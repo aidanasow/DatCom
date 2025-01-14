@@ -9,6 +9,8 @@ import { useMediaQuery } from "utils/helpers/useMedia";
 import { GreenIcon } from "assets/index";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
+import {Loader} from "pages/Loader/Loader.jsx";
+import {useTranslation} from "react-i18next";
 
 const initialState = {
   name: "",
@@ -31,8 +33,10 @@ export const Form = () => {
   const [errors, setErrors] = useState(initialErrors);
   const [open, setOpen] = useState(false);
 
+  const {t}=useTranslation();
+
   const isTablet = useMediaQuery("(max-width: 700px)");
-  const { submitForm, countryList, studyList, specialityList } = useFormStore();
+  const { submitForm, countryList, studyList, specialityList, loading } = useFormStore();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,12 +53,12 @@ export const Form = () => {
   const validateField = (name, value) => {
     switch (name) {
       case "name":
-        return value.trim() ? "" : "Введите ФИО.";
+        return value.trim() ? "" : "form.fullName";
       case "number":
       case "country":
       case "study":
       case "speciality":
-        return value ? "" : "Поле обязательно для заполнения.";
+        return value ? "" : "form.validation";
       default:
         return "";
     }
@@ -80,7 +84,7 @@ export const Form = () => {
       setOpen(true);
       setState(initialState);
     } catch (error) {
-      console.error("Ошибка при отправке формы:", error);
+      console.error(t("form.error"), error);
     }
   };
 
@@ -103,7 +107,7 @@ export const Form = () => {
       top: "0px",
     },
   };
-
+  if (loading) return <Loader/>
   return (
       <>
         <Breadcrumbs breadcrumbKey={"form"}/>
@@ -111,28 +115,28 @@ export const Form = () => {
         <div className={classes.blockWrapper}>
           <div className={`${classes.formBlock} ${classes.round}`}>
             <Typography variant="h1" weight="bold" upp="upp">
-              оставить заявку
+              {t("buttonsText.request")}
             </Typography>
             <div className={classes.inputWrapper}>
               <Typography weight="semiBold">
-                Заполните форму, чтобы начать процесс поступления
+                {t("form.fillForm")}
               </Typography>
 
               <form className={classes.form} onSubmit={onFormSubmit}>
                 <TextField
                     name="name"
-                    label="ФИО"
+                    label={t("titles.fullName")}
                     variant="outlined"
                     value={state.name}
                     onChange={handleInputChange}
                     error={!!errors.name}
-                    helperText={errors.name}
+                    helperText={errors.name ? t(errors.name) : ""}
                     sx={sharedTextFieldStyles}
                 />
 
                 <TextField
                     name="number"
-                    label="Номер телефона"
+                    label={t("titles.number")}
                     variant="outlined"
                     value={state.number}
                     slotProps={{
@@ -147,7 +151,7 @@ export const Form = () => {
                             }));
                             setErrors((prevErrors) => ({
                               ...prevErrors,
-                              number: "", // Очистка ошибки при вводе
+                              number: "",
                             }));
                           },
                           unmask: true,
@@ -155,7 +159,7 @@ export const Form = () => {
                       },
                     }}
                     error={!!errors.number}
-                    helperText={errors.number}
+                    helperText={errors.number ? t(errors.number) : ""}
                     sx={sharedTextFieldStyles}
                 />
 
@@ -163,11 +167,11 @@ export const Form = () => {
                     id="country"
                     name="country"
                     select
-                    label="Страна"
+                    label={t("titles.country")}
                     value={state.country}
                     onChange={handleInputChange}
                     error={!!errors.country}
-                    helperText={errors.country}
+                    helperText={t(errors.country)}
                     sx={sharedTextFieldStyles}
                 >
                   {countryList.map((option) => (
@@ -181,11 +185,11 @@ export const Form = () => {
                     id="study"
                     name="study"
                     select
-                    label="Направление обучения"
+                    label={t("titles.direction")}
                     value={state.study}
                     onChange={handleInputChange}
                     error={!!errors.study}
-                    helperText={errors.study}
+                    helperText={t(errors.study)}
                     sx={sharedTextFieldStyles}
                 >
                   {studyList.map((option) => (
@@ -199,11 +203,11 @@ export const Form = () => {
                     id="speciality"
                     name="speciality"
                     select
-                    label="Желаемая специальность"
+                    label={t("titles.specialty")}
                     value={state.speciality}
                     onChange={handleInputChange}
                     error={!!errors.speciality}
-                    helperText={errors.speciality}
+                    helperText={t(errors.speciality)}
                     sx={sharedTextFieldStyles}
                 >
                   {specialityList.map((option) => (
@@ -214,7 +218,7 @@ export const Form = () => {
                 </TextField>
 
                 <Button type="submit" size="default" fullWidth={true}>
-                  <Typography variant="h4">Отправить заявку</Typography>
+                  <Typography variant="h4">{t("buttonsText.request")}</Typography>
                 </Button>
               </form>
             </div>
@@ -249,12 +253,12 @@ export const Form = () => {
                   weight="semiBold"
                   className={classes.modalTitle}
               >
-                Ваша заявка успешно отправлена
+                {t("titles.modal")}
               </Typography>
               <Button className={classes.modalBtn}>
                 <Link to={"/"}>
                   <Typography variant="h5" weight="semiBold">
-                    На главную
+                    {t("buttonsText.goToHome")}
                   </Typography>
                 </Link>
               </Button>

@@ -2,11 +2,27 @@
 
 .wrapper {
   margin-top: 32px;
-
+  &Block {
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+    @include medium {
+      flex-direction: column;
+      gap: 16px;
+      margin: 24px 0 16px;
+    }
+  }
   .imageWrapper {
+    width: 57.66%;
+    height: 494px;
+    @include medium {
+      width: 100%;
+      max-height: 400px;
+    }
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border-radius: 20px;
     }
   }
@@ -15,8 +31,11 @@
     padding: 20px;
     border-radius: 20px;
     background: #fff;
+    width: 40.7%;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
-
+    @include medium {
+      width: 100%;
+    }
     .secondaryTitle {
       margin-bottom: 24px;
     }
@@ -31,5 +50,11 @@
 
   .students {
     margin-top: 120px;
+    @include medium {
+      margin-top: 80px;
+    }
+    @include small-medium {
+      margin-top: 60px;
+    }
   }
 }

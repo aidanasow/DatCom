@@ -3,13 +3,37 @@
 .card {
   padding: 20px;
   display: flex;
-  gap: 20px;
+  gap: 16px;
   border-radius: 20px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
   width: 100%;
+  @include medium {
+    gap: 10px;
+  }
   @include small {
     padding: 10px;
     gap: 10px;
+  }
+  .btnContainer {
+    margin-top: auto;
+  }
+  .bigHead {
+    height: 90px;
+    @include medium {
+      height: 52px;
+    }
+    @include small {
+      height: 48px;
+    }
+  }
+  .smallHead {
+    height: 45px;
+    @include medium {
+      height: 26px;
+    }
+    @include small {
+      height: 24px;
+    }
   }
 }
 
@@ -20,9 +44,10 @@
   }
   @include small-medium {
     flex-direction: column;
-
   }
-
+  @include small {
+    max-height: 475px;
+  }
 
   .countryImage {
     max-width: 261px;
@@ -49,17 +74,27 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 16px;
+    @include small {
+      gap: 8px;
+    }
 
     .countryDesc {
-      margin: 16px 0;
       max-width: 289px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 7;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-height: calc(7 * 1.4em);
       line-height: 1.4em;
+      @include medium {
+       max-width: none;
+        width: 100%;
+      }
+      @include small-medium {
+        max-height: 114px;
+        line-height: 1.2em;
+      }
     }
     .btnContainer {
       margin-top: auto;
@@ -88,33 +123,56 @@
     width: 346px;
   }
   @include small-medium {
-    width: 292px;
+    width: 100%;
     padding: 20px;
     gap: 16px;
   }
   .studentsImage {
     max-width: 360px;
     height: 280px;
-
+    @include medium {
+      height: 300px;
+    }
+    @include small {
+      height: 240px;
+    }
     img {
       border-radius: 14px;
-      object-fit: cover;
     }
   }
 
   .infoBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include medium {
+      gap: 6px;
+    }
+    @include small {
+      gap: 8px;
+    }
     .studentsDesc {
-      margin: 16px 0;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 360px;
-
-      max-height: calc(3 * 1.5em);
-
-      line-height: 1.5em;
+      height: 100px;
+      line-height: 1.67em;
+      @include medium {
+        line-height: 1.5em;
+        height: 104px;
+      }
+      @include small {
+        height: 73px;
+      }
+    }
+    .uniDesc {
+      margin-bottom: 4px;
+      @include medium {
+        margin-bottom: 0;
+      }
     }
 
     .studentsBtn {

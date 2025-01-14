@@ -1,20 +1,21 @@
 @use "styles/mixin" as *;
 
 .wrapper {
-  margin-top: 32px;
-
+  margin: 32px 0 120px;
+  @include medium {
+    margin-bottom: 80px;
+  }
+  @include small-medium {
+    margin-bottom: 60px;
+  }
   .cardWrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 16px;
-
+    justify-content: space-around;
     @include medium {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @include small {
-      grid-template-columns: 1fr;
+      gap: 16px;
     }
   }
 

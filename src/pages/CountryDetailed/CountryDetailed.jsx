@@ -5,11 +5,24 @@ import classes from "./CountryDetailed.module.scss";
 import {CountryStepper} from "./components/Stepper/Stepper";
 import {Slider} from "modules/index";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
+import {Loader} from "pages/Loader/Loader.jsx";
+import {useMediaQuery} from "utils/helpers/useMedia.js";
+import {useTranslation} from "react-i18next";
 
 export const CountryDetailed = () => {
     const {id} = useParams();
-    const {country} = useCountryDetailedStore(id);
-
+    const {t}=useTranslation();
+    const {country, loading} = useCountryDetailedStore(id);
+    const tablet = useMediaQuery("(max-width: 900px)")
+    const phone = useMediaQuery("(max-width: 500px)")
+    const miniTab = useMediaQuery("(max-width: 750px)")
+    const laptop = useMediaQuery("(max-width: 1200px)")
+    let cards = 3
+    if (laptop) cards = 2.5
+    if (tablet) cards = 2
+    if (miniTab) cards = 1.8
+    if (phone) cards = 1.3
+    if (loading) return <Loader/>
     return (
         <>
             <Breadcrumbs breadcrumbKey={"countriesDetail"} thirdElement={country.title}/>
@@ -28,39 +41,49 @@ export const CountryDetailed = () => {
                     </div>
                 </Container>
             </div>
-
-            <div className={classes.aboutCountry}>
-                <CountryStepper list={country?.about_country}/>
-            </div>
-
+                <div className={classes.aboutCountry}>
+                    <CountryStepper list={country?.about_country}/>
+                </div>
             <Container>
-                <div className={classes.gallery}>
-                    <Typography variant="heading">Фотогалерея</Typography>
-                    <Slider
-                        amount={3}
-                        sliderList={country?.country_image}
-                        renderSlide={(item) => (
-                            <div className={classes.gallery_block}>
-                                <img src={item.image} alt="country gallery"/>
-                            </div>
-                        )}
-                    />
-                </div>
-                <div className={classes.universityList}>
-                    <Typography variant="heading">Университеты Италии</Typography>
-                    <Slider
-                        amount={2.8}
-                        sliderList={country?.recommended_universities}
-                        renderSlide={(item) => (
-                            <CustomCard
-                                variant="students"
-                                title={item.title}
-                                image={item.image}
-                                description={item.description}
-                            />
-                        )}
-                    />
-                </div>
+                {
+                    country?.country_image?.length>0 &&
+                    <div className={classes.gallery}>
+                        <Typography variant="heading">{t("titles.photoGallery")}</Typography>
+                        <Slider
+                            amount={3}
+                            maxCards={3}
+                            spaceBetWeen={20}
+                            sliderList={country?.country_image}
+                            renderSlide={(item) => (
+                                <div className={classes.gallery_block}>
+                                    <img src={item.image} alt="country gallery"/>
+                                </div>
+                            )}
+                        />
+                    </div>
+                }
+                </Container>
+                <Container>
+                {
+                    country?.recommended_universities?.length>0 &&
+                    <div className={classes.universityList}>
+                        <Typography variant="heading" >{t("titles.universities")}</Typography>
+                        <Slider
+                            maxCards={cards}
+                            sliderList={country?.recommended_universities}
+                            renderSlide={(item) => (
+                                <CustomCard
+                                    variant="students"
+                                    title={item.title}
+                                    image={item.image}
+                                    description={item.description}
+                                    isUni={true}
+                                    link={`/universities/${item.id}`}
+                                />
+                            )}
+                        />
+                    </div>
+                }
             </Container>
         </>
     );
