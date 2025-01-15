@@ -16,6 +16,13 @@
   }
   .btnContainer {
     margin-top: auto;
+    @include small {
+      align-self: end;
+      a, path {
+        color: var(--color-primary);
+        stroke: var(--color-primary);
+      }
+    }
   }
   .bigHead {
     height: 90px;
@@ -39,21 +46,29 @@
 
 .country {
   max-width: 610px;
-  @include medium {
+  @media (max-width: 1300px) {
+    max-width: 550px;
+  }
+  @media (max-width: 1200px)  {
     max-width: none;
   }
   @include small-medium {
-    flex-direction: column;
+
   }
   @include small {
+    flex-direction: column;
     max-height: 456px;
   }
 
   .countryImage {
-    max-width: 261px;
+    width: 261px;
     height: 323px;
-    @include large {
-      max-width: 252px;
+    @media (max-width: 1300px) {
+      max-width: 250px;
+    }
+    @media (max-width: 1200px)  {
+      max-width: none;
+      width: 40.5%;
     }
     @include medium {
       height: 309px;
@@ -61,6 +76,9 @@
     @include small-medium {
       max-width: 100%;
       height: 250px;
+    }
+    @include small {
+      width: 100%;
     }
 
 
@@ -73,33 +91,43 @@
   .infoBlock {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 47%;
     gap: 16px;
+    @media (max-width: 1200px)  {
+      width: 58%;
+
+    }
     @include small {
       gap: 8px;
+      width: 100%;
     }
 
     .countryDesc {
       max-width: 289px;
       display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 7;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.4em;
-      @include medium {
-       max-width: none;
-        width: 100%;
+      @media (max-width: 1300px) {
+        -webkit-line-clamp: 6;
+      }
+      @media (max-width: 1200px)  {
+        max-width: none;
       }
       @include small-medium {
-        max-height: 114px;
-        line-height: 1.2em;
+        -webkit-line-clamp: 5;
       }
+
     }
 
     .btnContainer {
-      margin-top: auto;
-
       .countryBtn {
         margin: 12px 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
         transition: 0.3s;
 
         &:hover {
@@ -120,6 +148,9 @@
     }
     @include small-medium {
       width: 100%;
+      height: 200px;
+    }
+    @include small {
       max-height: 195px;
     }
 
@@ -128,6 +159,20 @@
 .mainCountryCard {
   @include medium {
     max-width: 527px;
+    gap: 20px;
+  }
+  @include small-medium {
+    flex-direction: column;
+  }
+  .countryImage {
+    width: 234px;
+    @include small-medium {
+      width: 100%;
+      gap: 10px;
+    }
+  }
+  .countryDesc {
+    line-height: 1.4;
   }
 }
 

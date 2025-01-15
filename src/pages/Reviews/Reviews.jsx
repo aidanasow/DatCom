@@ -15,7 +15,6 @@ import {useMediaQuery} from "utils/helpers/useMedia.js";
 export const Reviews = () => {
   const {t}=useTranslation();
   const [offset, setOffset] = useState(0);
-  const [ratingData, setRatingData] = useState({});
   const limit = 6;
 
   const { reviews, count, video, rating, loading } = useReviewsStore(
@@ -39,11 +38,6 @@ export const Reviews = () => {
     setOffset((page - 1) * limit);
   };
 
-  useEffect(() => {
-    if (!loading) {
-      setRatingData(rating);
-    }
-  }, [rating, loading]);
 
   if (loading) {
     return <Loader />;
@@ -61,7 +55,7 @@ export const Reviews = () => {
             <div className={classes.reviewWrapper}>
               <div className={classes.starWrapper}>
                 {Array.from({length: 5}).map((_, index) =>
-                    index < ratingData?.average ? (
+                    index < rating?.average ? (
                         <div key={index} className={classes.star}>
                           <StarIcon/>
                         </div>
@@ -73,7 +67,7 @@ export const Reviews = () => {
                 )}
               </div>
               <div className={classes.reviewData}>
-                <Typography weight="regular">{ratingData?.average}</Typography>
+                <Typography weight="regular">{rating?.average}</Typography>
                 <Typography color="gray2">{reviews.length} {t("titles.ratings")}</Typography>
               </div>
             </div>

@@ -14,14 +14,15 @@ import {Container, CustomCard, Typography} from "ui/index";
 import {useCountriesStore} from "pages/Countries/store/useCountriesStore.js";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {useTranslation} from "react-i18next";
+import {Loader} from "pages/Loader/Loader.jsx";
 
 export const Home = () => {
-    const {t, i18n}=useTranslation();
+    const {t}=useTranslation();
     const limit = 6;
     const {students} = useStudentsStore(0, limit);
     const [open, setOpen] = useState(false);
     const [student, setStudent] = useState({});
-    const {countries, count} = useCountriesStore(0, limit);
+    const {countries, loading} = useCountriesStore(0, limit);
     const tablet = useMediaQuery("(max-width: 900px)")
     const phone = useMediaQuery("(max-width: 500px)")
     const miniTab = useMediaQuery("(max-width: 750px)")

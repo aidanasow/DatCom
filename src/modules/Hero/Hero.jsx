@@ -19,7 +19,6 @@ export const Hero = () => {
   useEffect(() => {
     const fetchMainPage = async () => {
       setLoading(true);
-      setData(null);
       try {
         const response = await fetchData(`/main-info/main-page/`);
         setData(response);
@@ -27,6 +26,7 @@ export const Hero = () => {
         throw new Error(error);
       } finally {
         setLoading(false);
+        console.log('')
       }
     };
 

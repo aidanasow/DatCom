@@ -1,4 +1,4 @@
-export const ArrowMore = () => {
+export const ArrowMore = ({color="#262626"}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +9,7 @@ export const ArrowMore = () => {
     >
       <path
         d="M1 1L6 6L1 11"
-        stroke="#262626"
+        stroke={color}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
