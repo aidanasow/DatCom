@@ -10,7 +10,7 @@ import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
   const { t } = useTranslation();
   const location = useLocation();
-  const {contacts} = useContactsStore();
+  const {phone} = useContactsStore();
 
   const scrollToElement = () => {
     const element = document.getElementById("services");
@@ -84,9 +84,9 @@ export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
           </Button>
           <div className={classes.phone}>
 
-            {contacts.phonenumber && contacts.phonenumber.length > 0 ? (
-                <a href={`tel:${contacts.phonenumber[0].phonenumber}`}>
-                  <Typography weight={"smallBold"}>{contacts.phonenumber[0].phonenumber}</Typography>
+            {phone ?(
+                <a href={`tel:${phone}`}>
+                  <Typography weight={"smallBold"}>{phone}</Typography>
                 </a>
             ) : (
                 <Typography>+996 505‒28‒63‒85</Typography>

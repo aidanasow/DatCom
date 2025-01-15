@@ -6,6 +6,7 @@ export const useContactsStore = () => {
   const { i18n}=useTranslation();
   const [contacts, setContacts] = useState({});
   const [phone, setPhone]=useState(null)
+  const [policy, setPolicy]=useState("")
   const { fetchData, loading } = useApiStore();
 
   useEffect(() => {
@@ -18,13 +19,22 @@ export const useContactsStore = () => {
         throw new Error(error);
       }
     };
-
+    const fetchPolicy=async ()=>{
+      try {
+        const response = await fetchData(`/main-info/privacy-policy/`);
+        setPolicy(response[0].file);
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
     fetchContacts();
+    fetchPolicy();
   }, [fetchData, i18n.language]);
 
   return {
     contacts,
     phone,
     loading,
+    policy
   };
 };

@@ -55,7 +55,7 @@ export const MobileHeader = () => {
               </Link>
             </Button>
         )}
-        <div className={classes.block_lang}>
+        <div>
           <SwitchLanguage />
         </div>
         <div className={classes.block_burger} onClick={() => setIsClose(false)}>

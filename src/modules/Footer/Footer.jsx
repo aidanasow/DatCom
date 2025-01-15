@@ -5,27 +5,11 @@ import { Link } from "react-router-dom";
 import { Container, SocialMedia, Typography } from "ui/index";
 import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 import novaLogo from "assets/images/novaLogo.png";
-import {useEffect, useState} from "react";
-import {useApiStore} from "utils/requester/requester.js";
 import {useTranslation} from "react-i18next";
 
 export const Footer = () => {
-  const {contacts} = useContactsStore();
-  const { fetchData } = useApiStore();
+  const {contacts, policy} = useContactsStore();
   const {t}=useTranslation();
-  const [link, setLink]=useState("");
-  useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const ourLink = await fetchData(`/main-info/footer-link/`);
-        ourLink.length>0? setLink(ourLink): setLink("");
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
-    fetchLinks();
-  }, [fetchData]);
 
   return (
     <div className={classes.footer}>
@@ -93,9 +77,9 @@ export const Footer = () => {
       <Container>
         <div className={classes.footerBottom}>
           <Typography variant="smallBody">
-            <a href="#">{t("nav.policy")}</a>
+            <a href={policy} target="_blank">{t("nav.policy")}</a>
           </Typography>
-          <a className={classes.ourLogo} href={link.length>0 ? link[0].link: ""} >
+          <a className={classes.ourLogo} href="#" >
             <img src={novaLogo} alt="made by Novalabs"/>
           </a>
         </div>
