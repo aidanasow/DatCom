@@ -5,6 +5,12 @@
   color: var(--color-white);
   padding: 40px 0;
   margin-bottom: 120px;
+  @include medium {
+    margin-bottom: 80px;
+  }
+  @include small {
+    margin-bottom: 60px;
+  }
 
   .list {
     display: flex;

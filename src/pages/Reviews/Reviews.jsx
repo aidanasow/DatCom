@@ -10,6 +10,7 @@ import { StarEmptyIcon } from "assets/icons/StarEmptyIcon";
 import { Loader } from "..";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 import {useTranslation} from "react-i18next";
+import {useMediaQuery} from "utils/helpers/useMedia.js";
 
 export const Reviews = () => {
   const {t}=useTranslation();
@@ -21,6 +22,18 @@ export const Reviews = () => {
     offset,
     limit
   );
+
+  const tablet = useMediaQuery("(max-width: 900px)")
+  const phone = useMediaQuery("(max-width: 500px)")
+  const miniTab = useMediaQuery("(max-width: 750px)")
+  const laptop = useMediaQuery("(max-width: 1200px)")
+  let cards = 3
+  if (laptop) cards = 2.5
+  if (tablet) cards = 1.72
+  if (miniTab) cards = 1.8
+  if (phone) cards = 1.5
+  let space =20;
+  if (tablet) space=16;
 
   const onChange = (_, page) => {
     setOffset((page - 1) * limit);
@@ -72,18 +85,24 @@ export const Reviews = () => {
             </div>
 
             <PaginationComponent count={count} onChange={onChange}/>
-
+          </Container>
             <div className={classes.youtubeWrapper}>
-              <Typography variant="heading">{t("titles.videoReviews")}</Typography>
+
+                <Typography variant="heading">{t("titles.videoReviews")}</Typography>
+
               <div>
                 <Slider
-                    amount={3}
+                    maxCards={cards}
+                    spaceBetWeen={space}
                     sliderList={video}
                     renderSlide={(item) => (
                         <div className={classes.youtube}>
                           <ReactPlayer
                               width="100%"
                               height="100%"
+                              style={{
+                                objectFit: "cover"
+                              }}
                               url={item.link}
                               playIcon={
                                 <svg
@@ -118,7 +137,7 @@ export const Reviews = () => {
                 />
               </div>
             </div>
-          </Container>
+
         </div>
       </>
 

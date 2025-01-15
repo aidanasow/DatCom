@@ -46,7 +46,7 @@
     flex-direction: column;
   }
   @include small {
-    max-height: 475px;
+    max-height: 456px;
   }
 
   .countryImage {
@@ -96,6 +96,7 @@
         line-height: 1.2em;
       }
     }
+
     .btnContainer {
       margin-top: auto;
 
@@ -114,6 +115,22 @@
       }
     }
   }
+  .mainCountryBlock {
+    @include medium{
+      height: 309px;
+      width: 233px;
+    }
+    @include small-medium {
+      width: 100%;
+      max-height: 195px;
+    }
+
+  }
+}
+.mainCountryCard {
+  @include medium {
+    max-width: 527px;
+  }
 }
 
 .students {
@@ -126,6 +143,9 @@
     width: 100%;
     padding: 20px;
     gap: 16px;
+  }
+  @include small {
+    gap: 10px;
   }
   .studentsImage {
     max-width: 360px;
@@ -140,7 +160,11 @@
       border-radius: 14px;
     }
   }
-
+  .mainStudentImage {
+    @include small {
+      height: 262px;
+    }
+  }
   .infoBlock {
     display: flex;
     flex-direction: column;
@@ -165,13 +189,20 @@
         height: 104px;
       }
       @include small {
-        height: 73px;
+        max-height: 103px;
+        line-height: 1.3em;
+        height: 65px;
       }
     }
     .uniDesc {
       margin-bottom: 4px;
       @include medium {
         margin-bottom: 0;
+      }
+    }
+    .mainStudentDesc {
+      @include small {
+        height: 103px;
       }
     }
 

@@ -26,7 +26,8 @@ export const CustomCard = ({
   description,
   link,
   modal,
-    isUni=false
+    isUni=false,
+    isMain=false
 }) => {
   const cardConfig = cardVariant[variant];
   const {t}=useTranslation();
@@ -37,15 +38,15 @@ export const CustomCard = ({
   const { card, imageBlock, desc, btn } = cardConfig;
 
   return (
-    <div className={`${classes.card} ${card}`}>
-      <div className={imageBlock}>
+    <div className={`${classes.card} ${card} ${isMain? classes.mainCountryCard:""}`}>
+      <div className={`${imageBlock} ${isMain? classes.mainStudentImage: ""}`}>
         <img src={image} alt={title} />
       </div>
-      <div className={classes.infoBlock}>
-        <Typography variant="h3" weight="regular" truncate={isUni? 30:15} className={`${isUni? classes.bigHead : classes.smallHead}`}>
+      <div className={`${classes.infoBlock} ${isMain&& classes.mainCountryBlock}`}>
+        <Typography variant="h3" weight="regular" truncate={isUni? 30:15} className={`${isUni? classes.bigHead : classes.smallHead} `}>
           {title}
         </Typography>
-        <Typography className={`${desc} ${isUni? classes.uniDesc: ""}`}>{description}</Typography>
+        <Typography className={`${desc} ${isUni? classes.uniDesc: ""}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>
         {modal ? (
           <Typography
             weight="regular"

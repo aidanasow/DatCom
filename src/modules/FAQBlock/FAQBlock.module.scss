@@ -1,6 +1,12 @@
 @use "styles/mixin" as *;
 .list {
   margin: 32px 0 120px;
+  @include medium {
+    margin: 24px 0 80px;
+  }
+  @include small {
+    margin: 24px 0 60px;
+  }
 }
 .accordion {
   padding: 16px !important;

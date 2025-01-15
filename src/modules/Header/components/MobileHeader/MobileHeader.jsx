@@ -51,7 +51,7 @@ export const MobileHeader = () => {
         {!isMobile && (
             <Button size="medium">
               <Link to={PATHS.form}>
-                <Typography weight="regular">{t("header.btn")}</Typography>
+                <Typography weight="regular">{t("buttonsText.request")}</Typography>
               </Link>
             </Button>
         )}

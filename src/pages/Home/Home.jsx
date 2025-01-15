@@ -41,7 +41,7 @@ export const Home = () => {
     if (laptop) cards = 2.5
     if (tablet) cards = 2
     if (miniTab) cards = 1.8
-    if (phone) cards = 1.3
+    if (phone) cards = 1.2
     const openModal = (student) => {
         setOpen(true);
         setStudent(student);
@@ -59,7 +59,7 @@ export const Home = () => {
             </Container>
             <Container slide>
                 <Slider
-                    minCardWidth={295}
+                    minCardWidth={292}
                     maxCards={maxCards}
                     sliderList={countries}
                     renderSlide={(item) => (
@@ -67,6 +67,7 @@ export const Home = () => {
                             variant="country"
                             title={item.title}
                             image={item.image}
+                            isMain
                             description={item.description}
                             link={`/countries/${item.id}`}
                         />
@@ -88,6 +89,7 @@ export const Home = () => {
                             variant="students"
                             title={item.title}
                             image={item.image}
+                            isMain
                             description={item.description}
                             modal={() => openModal(item)}
                         />

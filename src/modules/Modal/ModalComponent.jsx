@@ -24,20 +24,23 @@ export const ModalComponent = ({open, closeModal, student}) => {
                         </Typography>
                     </div>
                 </div>
-                <Box
-                    component="button"
-                    sx={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                    }}
-                    onClick={closeModal}
-                >
-                    <CloseIcon size={isSmall? 28: 32}/>
-                </Box>
+                <div>
+
+                </div>
+                <div className={classes.boxIcon}>
+                    <Box
+                        component="button"
+
+                        sx={{
+                            border: "none",
+                            background: "none",
+                        }}
+                        onClick={closeModal}
+                    >
+                        <CloseIcon size={isSmall? 28: 32}/>
+                    </Box>
+                </div>
+
             </div>
         </Modal>
     );

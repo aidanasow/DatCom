@@ -74,6 +74,7 @@ export const DetailedUniversity = () => {
                                   variant="students"
                                   title={item.title}
                                   image={item.image}
+                                  isMain
                                   description={item.description}
                                   modal={() => openModal(item)}
                               />

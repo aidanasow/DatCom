@@ -22,6 +22,8 @@ export const CountryDetailed = () => {
     if (tablet) cards = 2
     if (miniTab) cards = 1.8
     if (phone) cards = 1.3
+    let space=20;
+    if (tablet) space=16;
     if (loading) return <Loader/>
     return (
         <>
@@ -50,9 +52,8 @@ export const CountryDetailed = () => {
                     <div className={classes.gallery}>
                         <Typography variant="heading">{t("titles.photoGallery")}</Typography>
                         <Slider
-                            amount={3}
-                            maxCards={3}
-                            spaceBetWeen={20}
+                            maxCards={cards}
+                            spaceBetWeen={space}
                             sliderList={country?.country_image}
                             renderSlide={(item) => (
                                 <div className={classes.gallery_block}>
