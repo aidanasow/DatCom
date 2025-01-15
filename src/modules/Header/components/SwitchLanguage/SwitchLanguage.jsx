@@ -1,6 +1,6 @@
 import classes from "./SwitchLanguage.module.scss";
 import i18n from "utils/I18next/I18n";
-import { EarthIcon, RusIcon, KGIcon } from "assets/index";
+import { EarthIcon, RusIcon, ENIcon } from "assets/index";
 import { useState, useCallback } from "react";
 import { Typography } from "ui/Typography/Typography.jsx";
 import ArrowTop from "assets/icons/ArrowTop.jsx";
@@ -17,7 +17,7 @@ export const SwitchLanguage = () => {
 
     const languages = [
         { code: "ru", label: "Рус", icon: <RusIcon /> },
-        { code: "en", label: "En", icon: <KGIcon /> },
+        { code: "en", label: "En", icon: <ENIcon /> },
     ];
 
     const selectedLanguage = languages.find((lang) => lang.code === i18n.language);

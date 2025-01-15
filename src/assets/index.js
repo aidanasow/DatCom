@@ -2,7 +2,7 @@ export { InstagramIcon } from "./icons/InstagramIcon";
 export { TelegramIcon } from "./icons/TelegramIcon";
 export { WhatsappIcon } from "./icons/WhatsappIcon";
 export { EarthIcon } from "./icons/EarthIcon";
-export { KGIcon } from "./icons/KGIcon";
+export { ENIcon } from "./icons/ENIcon.jsx";
 export { RusIcon } from "./icons/RusIcon";
 export { DatComLogo } from "./icons/DatComLogo";
 export { LocationIcon } from "./icons/LocationIcon";
