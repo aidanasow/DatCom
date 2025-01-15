@@ -164,6 +164,9 @@
   @include small-medium {
     flex-direction: column;
   }
+  @include small {
+    max-height: 475px;
+  }
   .countryImage {
     width: 234px;
     @include small-medium {
