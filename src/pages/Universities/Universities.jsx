@@ -6,167 +6,199 @@ import { PaginationComponent } from "modules/PaginationComponent/PaginationCompo
 import { InputAdornment, MenuItem, TextField } from "@mui/material";
 import { Search } from "assets/index";
 import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
-import {Loader} from "pages/Loader/Loader.jsx";
-import {useTranslation} from "react-i18next";
+import { Loader } from "pages/Loader/Loader.jsx";
+import { useTranslation } from "react-i18next";
 
 export const Universities = () => {
-    const {t}=useTranslation();
-  const [offset, setOffset] = useState(0);
-  const [state, setState] = useState({
-    search: "",
-    country: "",
-    programm: "",
-  });
-  const limit = 12;
+    const { t } = useTranslation();
+    const [offset, setOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [state, setState] = useState({
+        search: "",
+        country: "",
+        programm: "",
+    });
+    const [tempSearch, setTempSearch] = useState("");
+    const limit = 12;
 
-  const { universities, countryList, programmList, count, loading } =
-    useUniversitiesStore(offset, limit, state);
+    const { universities, countryList, programmList, count, loading } =
+        useUniversitiesStore(offset, limit, state);
 
-  const onChange = (_, page) => {
-    setOffset((page - 1) * limit);
-  };
-    console.log(count)
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const onChange = (_, page) => {
+        setOffset((page - 1) * limit);
+        setCurrentPage(page);
+    };
 
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-    if (loading) return <Loader/>
-  return (
-      <>
-          <Breadcrumbs breadcrumbKey={"universities"}/>
-          <div className={classes.wrapper}>
-              <Container>
-                  <Typography variant="heading">{t("titles.universities")} </Typography>
-                  <div className={classes.searchBar}>
-                      <TextField
-                          name="search"
-                          label={t("search.search")}
-                          variant="outlined"
-                          value={state.search}
-                          onChange={handleInputChange}
-                          sx={{
-                              textAlign: "start",
-                              width: {xs: "100%", sm: "420px"},
-                              "& .MuiOutlinedInput-root": {
-                                  height: "45px",
-                                  borderRadius: "8px",
-                                  background: "var(--color-white)",
-                                  outline: "none",
-                              },
-                              "& .MuiOutlinedInput-input": {
-                                  padding: "10px",
-                              },
-                              "& .MuiInputLabel-root": {
-                                  lineHeight: "1.2",
-                                  top: "-4px",
-                              },
-                              "& .MuiInputLabel-shrink": {
-                                  top: "0px",
-                              },
-                          }}
-                          slotProps={{
-                              input: {
-                                  endAdornment: (
-                                      <InputAdornment position="end">
-                                          <div className={classes.icon}>
-                                              <Search/>
-                                          </div>
-                                      </InputAdornment>
-                                  ),
-                              },
-                          }}
-                      />
+    const handleFilterChange = (e) => {
+        const { name, value } = e.target;
+        setState((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
 
-                      <TextField
-                          name="country"
-                          label={t("search.country")}
-                          select
-                          defaultValue=""
-                          value={state.country}
-                          onChange={handleInputChange}
-                          sx={{
-                              width: {xs: "45%", sm: "120px"},
-                              "& .MuiOutlinedInput-root": {
-                                  height: "45px",
-                                  borderRadius: "8px",
-                                  background: "var(--color-white)",
-                                  outline: "none",
-                              },
-                              "& .MuiOutlinedInput-input": {
-                                  padding: "10px",
-                              },
-                              "& .MuiInputLabel-root": {
-                                  lineHeight: "1.2",
-                                  top: "-4px",
-                              },
-                              "& .MuiInputLabel-shrink": {
-                                  top: "0px",
-                              },
-                          }}
-                      >
-                          {countryList.map((option) => (
-                              <MenuItem key={option.id} value={option.id}>
-                                  {option.title}
-                              </MenuItem>
-                          ))}
-                      </TextField>
+    const handleSearchChange = (e) => {
+        setTempSearch(e.target.value);
+    };
 
-                      <TextField
-                          name="programm"
-                          label={t("search.eduProgram")}
-                          select
-                          defaultValue=""
-                          value={state.programm}
-                          onChange={handleInputChange}
-                          sx={{
-                              width: {xs: "45%", sm: "230px"},
-                              "& .MuiOutlinedInput-root": {
-                                  height: "45px",
-                                  borderRadius: "8px",
-                                  background: "var(--color-white)",
-                                  outline: "none",
-                              },
-                              "& .MuiOutlinedInput-input": {
-                                  padding: "10px",
-                              },
-                              "& .MuiInputLabel-root": {
-                                  lineHeight: "1.2",
-                                  top: "-4px",
-                              },
-                              "& .MuiInputLabel-shrink": {
-                                  top: "0px",
-                              },
-                          }}
-                      >
-                          {programmList.map((option) => (
-                              <MenuItem key={option.id} value={option.id}>
-                                  {option.title}
-                              </MenuItem>
-                          ))}
-                      </TextField>
-                  </div>
-                  <div className={classes.cardWrapper}>
-                      {universities.length>0? universities.map((item, key) => (
-                          <CustomCard
-                              key={key}
-                              variant="students"
-                              title={item.title}
-                              image={item.image}
-                              description={item.description}
-                              isUni
-                              link={`/universities/${item.id}`}
-                          />
-                      )) : <Typography>{t("titles.noData")}</Typography>}
-                  </div>
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        setState((prevState) => ({
+            ...prevState,
+            search: tempSearch,
+        }));
+    };
+    const clearInput=()=>{
+        setTempSearch("");
+        setState((prevState) => ({
+            ...prevState,
+            search: " ",
+        }));
+    }
 
-                  <PaginationComponent count={count} onChange={onChange}/>
-              </Container>
-          </div>
-      </>
-
-  );
+    if (loading) return <Loader />;
+    return (
+        <>
+            <Breadcrumbs breadcrumbKey={"universities"} />
+            <div className={classes.wrapper}>
+                <Container>
+                    <Typography variant="heading">{t("titles.universities")} </Typography>
+                    <div className={classes.searchBar}>
+                        <form onSubmit={handleSearchSubmit}>
+                            <TextField
+                                name="search"
+                                label={t("search.search")}
+                                variant="outlined"
+                                value={tempSearch}
+                                onChange={handleSearchChange}
+                                sx={{
+                                    textAlign: "start",
+                                    width: { xs: "100%", sm: "420px" },
+                                    "& .MuiOutlinedInput-root": {
+                                        height: "45px",
+                                        borderRadius: "8px",
+                                        background: "var(--color-white)",
+                                        outline: "none",
+                                    },
+                                    "& .MuiOutlinedInput-input": {
+                                        padding: "10px",
+                                    },
+                                    "& .MuiInputLabel-root": {
+                                        lineHeight: "1.2",
+                                        top: "-4px",
+                                    },
+                                    "& .MuiInputLabel-shrink": {
+                                        top: "0px",
+                                    },
+                                }}
+                                slotProps={{
+                                    input: {
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <div className={classes.icon}>
+                                                    {
+                                                        tempSearch!==""?
+                                                            <div onClick={clearInput}
+                                                                    style={{cursor: "pointer"}}>&#10006;</div>
+                                                            :  <Search/>
+                                                    }
+                                                </div>
+                                            </InputAdornment>
+                                        ),
+                                    },
+                                }}
+                            />
+                        </form>
+                        <TextField
+                            name="country"
+                            label={t("search.country")}
+                            select
+                            value={state.country}
+                            onChange={handleFilterChange}
+                            sx={{
+                                width: { xs: "45%", sm: "120px" },
+                                "& .MuiOutlinedInput-root": {
+                                    height: "45px",
+                                    borderRadius: "8px",
+                                    background: "var(--color-white)",
+                                    outline: "none",
+                                },
+                                "& .MuiOutlinedInput-input": {
+                                    padding: "10px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    lineHeight: "1.2",
+                                    top: "-4px",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    top: "0px",
+                                },
+                            }}
+                        >
+                            {countryList.map((option) => (
+                                <MenuItem key={option.id} value={option.id}>
+                                    {option.title}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <TextField
+                            name="programm"
+                            label={t("search.eduProgram")}
+                            select
+                            value={state.programm}
+                            onChange={handleFilterChange}
+                            sx={{
+                                width: { xs: "45%", sm: "230px" },
+                                "& .MuiOutlinedInput-root": {
+                                    height: "45px",
+                                    borderRadius: "8px",
+                                    background: "var(--color-white)",
+                                    outline: "none",
+                                },
+                                "& .MuiOutlinedInput-input": {
+                                    padding: "10px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    lineHeight: "1.2",
+                                    top: "-4px",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    top: "0px",
+                                },
+                            }}
+                        >
+                            {programmList.map((option) => (
+                                <MenuItem key={option.id} value={option.id}>
+                                    {option.title}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        <button onClick={()=>{setState({
+                            search: "",
+                            country: "",
+                            programm: "",
+                        })}}>clear</button>
+                    </div>
+                    <div className={classes.cardWrapper}>
+                        {universities.length > 0 ? (
+                            universities.map((item, key) => (
+                                <CustomCard
+                                    key={key}
+                                    variant="students"
+                                    title={item.title}
+                                    image={item.image}
+                                    description={item.description}
+                                    isUni
+                                    link={`/universities/${item.id}`}
+                                />
+                            ))
+                        ) : (
+                            <Typography>{t("titles.noData")}</Typography>
+                        )}
+                    </div>
+                    <PaginationComponent page={currentPage} count={count} onChange={onChange} />
+                </Container>
+            </div>
+        </>
+    );
 };

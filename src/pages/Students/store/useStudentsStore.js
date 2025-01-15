@@ -26,6 +26,6 @@ export const useStudentsStore = (offset = 0, limit = 9) => {
   return {
     students,
     count,
-    loading,
+    loading
   };
 };

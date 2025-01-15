@@ -10,14 +10,17 @@ import {useTranslation} from "react-i18next";
 export const Countries = () => {
     const {t} = useTranslation();
     const [offset, setOffset] = useState(0);
-    const limit = 12;
+    const [currentPage, setCurrentPage] = useState(1);
+    const limit = 8;
 
     const {countries, count, loading} = useCountriesStore(offset, limit);
 
     const onChange = (_, page) => {
         setOffset((page - 1) * limit);
+        setCurrentPage(page);
     };
     if (loading) return <Loader/>
+
     return (
         <>
             <Breadcrumbs breadcrumbKey={"countries"}/>
@@ -37,7 +40,7 @@ export const Countries = () => {
                         ))}
                     </div>
 
-                    <PaginationComponent count={count} onChange={onChange}/>
+                    <PaginationComponent page={currentPage} count={count} onChange={onChange}/>
                 </Container>
             </div>
         </>
