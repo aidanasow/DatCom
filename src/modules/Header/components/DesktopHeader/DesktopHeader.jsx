@@ -11,7 +11,7 @@ import { useContactsStore } from "modules/Contacts/store/useContactsStore.js";
 export const DesktopHeader = () => {
     const { t } = useTranslation();
     const location = useLocation();
-    const { contacts, phone } = useContactsStore();
+    const { phone } = useContactsStore();
     const [showTopHeader, setShowTopHeader] = useState(true);
 
     const scrollToElement = () => {
@@ -51,6 +51,7 @@ export const DesktopHeader = () => {
             scrollToTop();
         }
     }, [location.pathname]);
+
 
     return (
         <div className={classes.header}>

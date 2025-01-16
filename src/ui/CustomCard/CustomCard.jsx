@@ -26,7 +26,6 @@ export const CustomCard = ({
   description,
   link,
   modal,
-    isUni=false,
     isMain=false
 }) => {
   const cardConfig = cardVariant[variant];
@@ -43,10 +42,10 @@ export const CustomCard = ({
         <img src={image} alt={title} />
       </div>
       <div className={`${classes.infoBlock} ${isMain&& classes.mainCountryBlock}`}>
-        <Typography variant="h3" weight="regular" truncate={isUni? 30:15} className={`${isUni? classes.bigHead : classes.smallHead} `}>
+        <Typography variant="h3" weight="regular" truncate={20}>
           {title}
         </Typography>
-        <Typography truncate={isMain? 200: false} className={`${desc} ${isUni? classes.uniDesc: ""}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>
+        <Typography truncate={isMain? 200: false} className={`${desc}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>
         {modal ? (
           <Typography
             weight="regular"

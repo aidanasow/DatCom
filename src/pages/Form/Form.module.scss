@@ -1,9 +1,16 @@
+@use "styles/mixin" as *;
+
 .blockWrapper {
   display: flex;
   align-items: stretch;
   gap: 20px;
-  margin: 24px 0;
-
+  margin: 32px 0 120px;
+  @include medium {
+    margin: 24px 0 80px;
+  }
+  @include small {
+    margin: 24px 0 60px;
+  }
   .formBlock {
     width: 100%;
     display: flex;

@@ -188,7 +188,6 @@ export const Universities = () => {
                                     title={item.title}
                                     image={item.image}
                                     description={item.description}
-                                    isUni
                                     link={`/universities/${item.id}`}
                                 />
                             ))
