@@ -14,7 +14,6 @@ import {Container, CustomCard, Typography} from "ui/index";
 import {useCountriesStore} from "pages/Countries/store/useCountriesStore.js";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {useTranslation} from "react-i18next";
-import {Loader} from "pages/Loader/Loader.jsx";
 
 export const Home = () => {
     const {t}=useTranslation();
@@ -56,9 +55,10 @@ export const Home = () => {
             <Hero/>
             <Container>
                 <AboutUs/>
-                <Typography variant="heading">{t("titles.countries")}</Typography>
+
             </Container>
-            <Container slide>
+            <Container >
+                <Typography variant="heading">{t("titles.countries")}</Typography>
                 <Slider
                     minCardWidth={292}
                     maxCards={maxCards}
@@ -78,10 +78,10 @@ export const Home = () => {
             <div  id={"services"}>
                 <Container>
                     <Services/>
-                    <Typography variant="heading">{t("titles.adStudents")}</Typography>
                 </Container>
             </div>
-            <Container slide>
+            <Container >
+                <Typography variant="heading">{t("titles.adStudents")}</Typography>
                 <Slider
                     maxCards={cards}
                     sliderList={students}
@@ -96,6 +96,7 @@ export const Home = () => {
                         />
                     )}
                 />
+
             </Container>
             <ReviewsBlock />
             <Container>

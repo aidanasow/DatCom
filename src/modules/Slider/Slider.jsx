@@ -25,7 +25,6 @@ export const Slider = ({
         setSlidesPerView(Math.min(calculatedSlides, maxCards));
       }
     };
-
     updateSlidesPerView();
     const observer = new ResizeObserver(updateSlidesPerView);
     if (containerRef.current) observer.observe(containerRef.current);

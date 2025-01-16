@@ -52,6 +52,9 @@ export const FAQBlock = () => {
                                         margin: 0,
                                     },
                                 },
+                                "& .css-1wqf3nl-MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+                                    transform: "rotate(135deg)",
+                                }
                             }}
                         >
                             <Typography variant="h4" weight="bold">

@@ -125,7 +125,8 @@ export const Form = () => {
               <form className={classes.form} onSubmit={onFormSubmit}>
                 <TextField
                     name="name"
-                    label={t("titles.fullName")}
+                    // label={t("titles.fullName")}
+                    placeholder={t("titles.fullName")}
                     variant="outlined"
                     value={state.name}
                     onChange={handleInputChange}
@@ -136,7 +137,7 @@ export const Form = () => {
 
                 <TextField
                     name="number"
-                    label={t("titles.number")}
+                    placeholder={t("titles.number")}
                     variant="outlined"
                     value={state.number}
                     slotProps={{
@@ -167,19 +168,25 @@ export const Form = () => {
                     id="country"
                     name="country"
                     select
-                    label={t("titles.country")}
                     value={state.country}
                     onChange={handleInputChange}
                     error={!!errors.country}
                     helperText={t(errors.country)}
                     sx={sharedTextFieldStyles}
+                    SelectProps={{
+                      displayEmpty: true, // Позволяет показать пустое значение как плейсхолдер
+                    }}
                 >
+                  <MenuItem value="" disabled>
+                    Страна
+                  </MenuItem>
                   {countryList.map((option) => (
                       <MenuItem key={option.id} value={option.id}>
                         {option.title}
                       </MenuItem>
                   ))}
                 </TextField>
+
 
                 <TextField
                     id="study"

@@ -24,23 +24,11 @@
       }
     }
   }
-  .bigHead {
-    height: 90px;
-    @include medium {
-      height: 52px;
-    }
-    @include small {
-      height: 48px;
-    }
-  }
-  .smallHead {
-    height: 45px;
-    @include medium {
-      height: 26px;
-    }
-    @include small {
-      height: 24px;
-    }
+  .head {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
   }
 }
 

@@ -42,7 +42,7 @@ export const CustomCard = ({
         <img src={image} alt={title} />
       </div>
       <div className={`${classes.infoBlock} ${isMain&& classes.mainCountryBlock}`}>
-        <Typography variant="h3" weight="regular" truncate={20}>
+        <Typography variant="h3" weight="regular" truncate={20} className={classes.head}>
           {title}
         </Typography>
         <Typography truncate={isMain? 200: false} className={`${desc}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>

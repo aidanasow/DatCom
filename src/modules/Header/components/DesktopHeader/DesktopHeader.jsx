@@ -57,11 +57,7 @@ export const DesktopHeader = () => {
         <div className={classes.header}>
                 <div className={`${showTopHeader? classes.topHeader: classes.topHeaderNone}`}>
                     <div>
-                        {phone ? (
-                            <Typography>{phone}</Typography>
-                        ) : (
-                            <Typography>+996 505‒28‒63‒85</Typography>
-                        )}
+                        {phone && <Typography>{phone}</Typography> }
                     </div>
                     <SocialMedia header />
                     <SwitchLanguage />
