@@ -19,3 +19,5 @@ export { GreenIcon } from "./icons/GreenIcon";
 export { BurgerMenuIcon } from "./icons/BurgerMenuIcon";
 export { ArrowRight } from "./icons/ArrowRight";
 export { ArrowLeft } from "./icons/ArrowLeft";
+export {ScrollIcon} from "./icons/ScrollIcon"
+export {default as whatsappImg} from "./images/WhatsApp.png";

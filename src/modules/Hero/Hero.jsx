@@ -26,17 +26,15 @@ export const Hero = () => {
         throw new Error(error);
       } finally {
         setLoading(false);
-        console.log('')
       }
     };
 
     fetchMainPage(i18n.language);
   }, [fetchData, i18n.language]);
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
-
-  const backgroundImage = data?.length > 0 ? data[0]?.image : imageEmpty;
+  const backgroundImage = data?.length > 0 && data[0]?.image ;
 
   return (
     <div
@@ -53,10 +51,10 @@ export const Hero = () => {
             variant="h1"
             className={classes.title}
           >
-            {data.length > 0 && data[0].title}
+            {data?.length > 0 && data[0]?.title}
           </Typography>
           <Typography className={classes.desc} variant="h4" color={isMobile? "black": "white"}>
-            {data.length > 0 && data[0].description}
+            {data?.length > 0 && data[0]?.description}
           </Typography>
           <Button size="medium" fullWidth={isMobile}>
             <Link to={PATHS.form}>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classes from "./Universities.module.scss";
-import { Typography, Container, CustomCard } from "ui/index";
+import {Typography, Container, CustomCard, Button} from "ui/index";
 import { useUniversitiesStore } from "./store/useUniversitiesStore";
 import { PaginationComponent } from "modules/PaginationComponent/PaginationComponent";
 import { InputAdornment, MenuItem, TextField } from "@mui/material";
@@ -111,7 +111,6 @@ export const Universities = () => {
                         </form>
                         <TextField
                             name="country"
-                            label={t("search.country")}
                             select
                             value={state.country}
                             onChange={handleFilterChange}
@@ -134,7 +133,13 @@ export const Universities = () => {
                                     top: "0px",
                                 },
                             }}
+                            SelectProps={{
+                                displayEmpty: true,
+                            }}
                         >
+                            <MenuItem value="" disabled>
+                                {t("titles.country")}
+                            </MenuItem>
                             {countryList.map((option) => (
                                 <MenuItem key={option.id} value={option.id}>
                                     {option.title}
@@ -143,7 +148,6 @@ export const Universities = () => {
                         </TextField>
                         <TextField
                             name="programm"
-                            label={t("search.eduProgram")}
                             select
                             value={state.programm}
                             onChange={handleFilterChange}
@@ -166,18 +170,26 @@ export const Universities = () => {
                                     top: "0px",
                                 },
                             }}
+                            SelectProps={{
+                                displayEmpty: true,
+                            }}
                         >
+                            <MenuItem value="" disabled>
+                                {t("search.eduProgram")}
+                            </MenuItem>
                             {programmList.map((option) => (
                                 <MenuItem key={option.id} value={option.id}>
                                     {option.title}
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <button onClick={()=>{setState({
+                        <Button variant={"secondary"} size={"short"} onClick={()=>{setState({
                             search: "",
                             country: "",
                             programm: "",
-                        })}}>clear</button>
+                        })}}>
+                            <Typography weight="small"> {t("buttonsText.clear")}</Typography>
+                        </Button>
                     </div>
                     <div className={classes.cardWrapper}>
                         {universities.length > 0 ? (

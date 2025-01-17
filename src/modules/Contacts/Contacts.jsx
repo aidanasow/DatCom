@@ -11,11 +11,11 @@ import {
     TelegramIcon,
 } from "assets/index";
 import {useMediaQuery} from "utils/helpers/useMedia";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useTranslation} from "react-i18next";
 
 export const Contacts = () => {
-    const {contacts,fetchContacts, fetchPolicy } = useContactsStore();
+    const {contacts } = useContactsStore();
     const {t, i18n}=useTranslation();
     const {shift, address, phonenumber, instagram, telegram} = contacts || {};
     const isTablet = useMediaQuery("(max-width: 900px)");
@@ -24,10 +24,7 @@ export const Contacts = () => {
     const openContacts = () => {
         setState(!state);
     };
-    useEffect(() => {
-        fetchContacts();
-        fetchPolicy()
-    }, [i18n.language]);
+
 
     return (
         <>

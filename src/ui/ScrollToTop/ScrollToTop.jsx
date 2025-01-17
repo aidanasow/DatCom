@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
-import ArrowTop from "assets/icons/ArrowTop.jsx";
 import classes from  "./ScrollToTop.module.scss";
-import whatsappImg from "assets/images/WhatsApp.png";
 import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
-import ScrollIcon from "assets/icons/ScrollIcon.jsx";
+import {ScrollIcon, whatsappImg} from "assets/index";
+import {useTranslation} from "react-i18next";
 
 export const ScrollToTop = () => {
     const [showArrowTop, setShowArrowTop] = useState(false);
-    const {phone}=useContactsStore();
+    const {phone, fetchContacts, fetchPolicy }=useContactsStore();
+    const {i18n}=useTranslation();
     const handleArrowTopClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -21,6 +21,10 @@ export const ScrollToTop = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+    useEffect(() => {
+        fetchContacts();
+        fetchPolicy()
+    }, [i18n.language]);
 
     return (
         <div className={classes.iconContainer}>

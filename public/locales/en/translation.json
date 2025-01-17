@@ -3,7 +3,8 @@
     "request": "Make a request",
     "details": "Details",
     "seeAll": "See all",
-    "goToHome": "Go to home"
+    "goToHome": "Go to home",
+    "clear": "Очистить"
   },
   "nav" : {
     "main":"Main",

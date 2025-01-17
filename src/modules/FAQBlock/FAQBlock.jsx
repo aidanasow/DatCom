@@ -17,7 +17,7 @@ export const FAQBlock = () => {
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : null);
     };
-
+    if (questions.length===0) return null;
     return (
         <>
             <Typography variant="heading">{t("titles.questions")}</Typography>
