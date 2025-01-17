@@ -69,7 +69,7 @@ export const DesktopHeader = () => {
                     </Link>
                 </div>
                 {navigationData.map((nav, key) => (
-                    <Link to={nav.path} key={key} onClick={scrollToElement}>
+                    <Link to={nav.path} key={key} onClick={scrollToElement} className={classes.headerNav}>
                         <Typography weight="regular">{t(nav.nav)}</Typography>
                     </Link>
                 ))}

@@ -1,6 +1,6 @@
 import { PATHS } from "utils/constants/Constants";
 import classes from "./Services.module.scss";
-import { Button, Typography } from "ui/index";
+import {Button, Container, Typography} from "ui/index";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -27,7 +27,7 @@ export const Services = () => {
   }, [services]);
   if (services.length===0 ) return <div> </div>
   return (
-      <>
+      <Container>
         <Typography variant="heading">{t("titles.services")}</Typography>
         <div className={classes.block}>
           <div className={classes.block_top}>
@@ -66,7 +66,7 @@ export const Services = () => {
             </div>
           </div>
         </div>
-      </>
+      </Container>
 
   );
 };

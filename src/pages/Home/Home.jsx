@@ -12,20 +12,18 @@ import {useStudentsStore} from "pages/Students/store/useStudentsStore";
 import {useState} from "react";
 import {Container, CustomCard, Typography} from "ui/index";
 import {useCountriesStore} from "pages/Countries/store/useCountriesStore.js";
-import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {useTranslation} from "react-i18next";
+import {UseSize} from "utils/helpers/useSize.jsx";
+import {useMediaQuery} from "@mui/material";
 
 export const Home = () => {
     const {t}=useTranslation();
-    const limit = 6;
-    const {students} = useStudentsStore(0, limit);
+    const {students} = useStudentsStore(0, 6);
     const [open, setOpen] = useState(false);
     const [student, setStudent] = useState({});
-    const {countries, loading} = useCountriesStore(0, limit);
-    const tablet = useMediaQuery("(max-width: 900px)")
-    const phone = useMediaQuery("(max-width: 500px)")
-    const miniTab = useMediaQuery("(max-width: 750px)")
-    const laptop = useMediaQuery("(max-width: 1200px)")
+    const {tablet, phone, miniTab, laptop}=UseSize();
+    const {countries} = useCountriesStore(0, 6);
+
 
     let maxCards =2;
     if (laptop) {
@@ -42,62 +40,60 @@ export const Home = () => {
     if (tablet) cards = 2
     if (miniTab) cards = 1.8
     if (phone) cards = 1.2
+
     const openModal = (student) => {
         setOpen(true);
         setStudent(student);
     };
-
     const closeModal = () => {
         setOpen(false);
     };
+
     return (
         <>
             <Hero/>
             <Container>
                 <AboutUs/>
-
             </Container>
-            <Container >
-                <Typography variant="heading">{t("titles.countries")}</Typography>
-                <Slider
-                    minCardWidth={292}
-                    maxCards={maxCards}
-                    sliderList={countries}
-                    renderSlide={(item) => (
-                        <CustomCard
-                            variant="country"
-                            title={item.title}
-                            image={item.image}
-                            isMain
-                            description={item.description}
-                            link={`/countries/${item.id}`}
-                        />
-                    )}
-                />
-            </Container>
-            <div  id={"services"}>
-                <Container>
-                    <Services/>
+                <Container slide>
+                    <Typography variant="heading">{t("titles.countries")}</Typography>
+                    <Slider
+                        minCardWidth={292}
+                        maxCards={maxCards}
+                        sliderList={countries}
+                        renderSlide={(item) => (
+                            <CustomCard
+                                variant="country"
+                                title={item.title}
+                                image={item.image}
+                                isMain
+                                description={item.description}
+                                link={`/countries/${item.id}`}
+                            />
+                        )}
+                    />
                 </Container>
+            <div  id={"services"}>
+                    <Services/>
             </div>
-            <Container >
-                <Typography variant="heading">{t("titles.adStudents")}</Typography>
-                <Slider
-                    maxCards={cards}
-                    sliderList={students}
-                    renderSlide={(item) => (
-                        <CustomCard
-                            variant="students"
-                            title={item.title}
-                            image={item.image}
-                            isMain
-                            description={item.description}
-                            modal={() => openModal(item)}
-                        />
-                    )}
-                />
+                <Container slide>
+                    <Typography variant="heading">{t("titles.adStudents")}</Typography>
+                    <Slider
+                        maxCards={cards}
+                        sliderList={students}
+                        renderSlide={(item) => (
+                            <CustomCard
+                                variant="students"
+                                title={item.title}
+                                image={item.image}
+                                isMain
+                                description={item.description}
+                                modal={() => openModal(item)}
+                            />
+                        )}
+                    />
+                </Container>
 
-            </Container>
             <ReviewsBlock />
             <Container>
                 <FAQBlock />

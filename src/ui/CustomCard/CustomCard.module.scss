@@ -90,20 +90,15 @@
       max-width: 289px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 7;
+      -webkit-line-clamp: 3;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.4em;
-      @media (max-width: 1300px) {
-        -webkit-line-clamp: 6;
-      }
+
       @media (max-width: 1200px)  {
         max-width: none;
       }
-      @include small-medium {
-        -webkit-line-clamp: 5;
-        line-height: 1.2em;
-      }
+
 
     }
 
@@ -149,11 +144,6 @@
   @include small {
     max-height: 480px;
     gap: 10px;
-  }
-  .countryDesc {
-    @include small-medium {
-      -webkit-line-clamp: 6;
-    }
   }
   .countryImage {
     width: 234px;

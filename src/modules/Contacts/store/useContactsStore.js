@@ -1,40 +1,34 @@
-import { useState, useEffect } from "react";
+import { create } from "zustand";
 import { useApiStore } from "utils/requester/requester";
-import {useTranslation} from "react-i18next";
-
-export const useContactsStore = () => {
-  const { i18n}=useTranslation();
-  const [contacts, setContacts] = useState({});
-  const [phone, setPhone]=useState(null)
-  const [policy, setPolicy]=useState("")
-  const { fetchData, loading } = useApiStore();
-
-  useEffect(() => {
-    const fetchContacts = async () => {
+const { fetchData, loading } = useApiStore.getState();
+export const useContactsStore = create((set, get) => {
+  return {
+    contacts: {},
+    phone: null,
+    policy: "",
+    loading,
+    error: null,
+    fetchContacts: async () => {
       try {
         const response = await fetchData(`main-info/contacts/`);
-        setContacts(response[0]);
-        setPhone(response[0]?.phonenumber[0]?.phonenumber)
+        set({
+          contacts: response[0],
+          phone: response[0]?.phonenumber[0]?.phonenumber,
+        });
       } catch (error) {
-        throw new Error(error);
+        set({ loading: false, error: error.message });
+        console.error("Failed to fetch contacts:", error);
       }
-    };
-    const fetchPolicy=async ()=>{
+    },
+
+    fetchPolicy: async () => {
       try {
         const response = await fetchData(`/main-info/privacy-policy/`);
-        setPolicy(response[0].file);
+        set({ policy: response[0]?.file,});
       } catch (error) {
-        throw new Error(error);
+        set({ error: error.message });
+        console.error("Failed to fetch policy:", error);
       }
-    }
-    fetchContacts();
-    fetchPolicy();
-  }, [fetchData, i18n.language]);
-
-  return {
-    contacts,
-    phone,
-    loading,
-    policy
+    },
   };
-};
+});

@@ -47,14 +47,14 @@ export const useApiStore = create((set) => ({
   postRequest: async (url, data) => {
     set({ loading: true, success: null, error: null });
     try {
-      await requester.post(url, data);
+      const response= await requester.post(url, data);
       set({ success: "Request successful" });
+      return response;
     } catch (error) {
       set({
         error: error.message,
         success: null,
       });
-
       throw error;
     } finally {
       set({ loading: false });

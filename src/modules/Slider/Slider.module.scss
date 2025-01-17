@@ -1,7 +1,7 @@
 @use "styles/mixin" as *;
 .swiper {
   margin-bottom: 120px;
-  //overflow: visible !important;
+  overflow: initial !important;
   display: flex;
   height: 100%;
   @include medium {
@@ -10,8 +10,12 @@
   @include small {
     margin-bottom: 60px;
   }
+
   .slide {
     padding: 32px 0 24px;
+    @include medium {
+
+    }
   }
   .buttons {
     display: flex;

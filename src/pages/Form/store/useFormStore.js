@@ -1,67 +1,84 @@
-import { useEffect, useState } from "react";
+import { create } from "zustand";
 import { useApiStore } from "utils/requester/requester";
 
-export const useFormStore = () => {
-  const { fetchData, postRequest, success, resetSuccess, loading } =
-    useApiStore();
-  const [countryList, setCountryList] = useState([]);
-  const [studyList, setStudyList] = useState([]);
-  const [specialityList, setSpecialityList] = useState([]);
+export const useFormStore = create((set, get) => ({
+  countryList: [],
+  studyList: [],
+  specialityList: [],
+  loading: false,
+  success: null,
+  message: "",
+  whatsappNumber: "",
+  setLoading: (loading) => set({ loading }),
+  setSuccess: (success) => set({ success }),
 
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetchData(`media/country/`);
-        setCountryList(response.results);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
+  resetSuccess: () => set({ success: null }),
 
-    const fetchStudies = async () => {
-      try {
-        const response = await fetchData(`media/program/`);
-        setStudyList(response.results);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
-    const fetchSpecialities = async () => {
-      try {
-        const response = await fetchData(`services/degree/`);
-        setSpecialityList(response.results);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
-    fetchCountries();
-    fetchStudies();
-    fetchSpecialities();
-  }, [fetchData]);
-
-  const submitForm = async (formData) => {
+  fetchCountries: async () => {
+    const { fetchData } = useApiStore.getState();
+    set({ loading: true });
     try {
-      await postRequest("services/application/", {
+      const response = await fetchData(`media/country/`);
+      set({ countryList: response.results });
+    } catch (error) {
+      console.error("Error fetching countries:", error.message);
+      throw new Error(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchStudies: async () => {
+    const { fetchData } = useApiStore.getState();
+    set({ loading: true });
+    try {
+      const response = await fetchData(`media/program/`);
+      set({ studyList: response.results });
+    } catch (error) {
+      console.error("Error fetching studies:", error.message);
+      throw new Error(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchSpecialities: async () => {
+    const { fetchData } = useApiStore.getState();
+    set({ loading: true });
+    try {
+      const response = await fetchData(`services/degree/`);
+      set({ specialityList: response.results });
+    } catch (error) {
+      console.error("Error fetching specialities:", error.message);
+      throw new Error(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  submitForm: async (formData) => {
+    const { postRequest } = useApiStore.getState();
+    set({ loading: true });
+    try {
+      const response = await postRequest("services/application/", {
         full_name: formData.name,
         phone_number: formData.number,
         country: formData.country,
-        degree: formData.study,
-        faculty: formData.speciality,
+        degree: formData.speciality,
+        faculty: formData.study,
       });
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
 
-  return {
-    submitForm,
-    countryList,
-    studyList,
-    specialityList,
-    success,
-    resetSuccess,
-    loading,
-  };
-};
+      if (response?.data?.text) {
+        set({message:response.data.text})
+        set({ whatsappNumber:response.data.phone_number});
+      }
+      set({ success: response.data });
+      return response.data;
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+      throw new Error(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
+}));

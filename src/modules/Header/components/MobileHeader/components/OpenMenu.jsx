@@ -71,7 +71,7 @@ export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
           <div className={classes.innerBlock_nav}>
             {navigationData.map((item, key) => (
                 <div key={key}>
-                  <Link to={item.path} key={key} onClick={scrollToElement}>
+                  <Link to={item.path} key={key} onClick={scrollToElement} className={classes.headerNav}>
                     <Typography weight="regular">{t(item.nav)}</Typography>
                   </Link>
                 </div>
