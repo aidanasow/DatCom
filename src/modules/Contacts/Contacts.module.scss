@@ -10,9 +10,13 @@
   @include medium {
     height: 360px;
     margin-bottom: 80px;
-
-    @include small-medium {
-      margin-bottom: 60px;}
+  }
+  @include small-medium {
+    min-height: 450px;
+    max-height: 527px;
+  }
+  @include small-medium {
+    margin-bottom: 60px;
   }
 
   &_left {
@@ -40,7 +44,9 @@
 
     @include small-medium {
       display: flex;
-      height: auto;
+      height: 100%;
+      max-height: 527px;
+
     }
 
     &_active {
@@ -76,6 +82,13 @@
 
   &_right {
     flex-grow: 1;
+    @include medium {
+      height: 360px;
+    }
+    @include small-medium {
+      height: auto;
+      max-height: 527px;
+    }
 
     .map {
       border-radius: 20px;
