@@ -1,10 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import classes from "./OpenMenu.module.scss";
 import { DatComLogo } from "assets/index";
 import { Button, Typography } from "ui/index";
 import { navigationData, PATHS } from "utils/constants/Constants";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 
 export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
@@ -43,7 +42,7 @@ export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
           <div className={classes.innerBlock_nav}>
             {navigationData.map((item, key) => (
                 <div key={key}>
-                  <Link to={item.path} key={key} onClick={scrollToElement} className={classes.headerNav}>
+                  <Link to={item.path} key={key} className={classes.headerNav}>
                     <Typography weight="regular">{t(item.nav)}</Typography>
                   </Link>
                 </div>
