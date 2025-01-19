@@ -23,7 +23,6 @@ export const Home = () => {
     const [student, setStudent] = useState({});
     const {tablet, phone, miniTab, laptop} = UseSize();
     const serviceRef=useRef(null);
-
     let maxCards = 2;
     if (laptop) {
         maxCards = 1.7;
@@ -61,10 +60,15 @@ export const Home = () => {
         }
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     useEffect(() => {
         if (location.pathname === "/services") {
             scrollToElement()
+        } else {
+            scrollToTop();
         }
     }, [location.pathname]);
 
