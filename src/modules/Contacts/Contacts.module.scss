@@ -12,12 +12,15 @@
     margin-bottom: 80px;
   }
   @include small-medium {
-    min-height: 450px;
-    max-height: 527px;
-  }
-  @include small-medium {
+    max-height: 700px;
+    height: max-content;
     margin-bottom: 60px;
+    flex-wrap: wrap;
   }
+  @include small {
+    height: auto;
+  }
+
 
   &_left {
     display: flex;
@@ -44,14 +47,28 @@
 
     @include small-medium {
       display: flex;
-      height: 100%;
-      max-height: 527px;
-
+      height: auto;
+      max-height: none;
+      padding: 45px 24px 21px;
+    }
+    @include small {
+      transform: translateY(-10%);
     }
 
     &_active {
       transform: translateX(0);
       opacity: 1;
+      @include small {
+        transform: translateY(0);
+      }
+      svg {
+        width: 60px;
+        height: 60px;
+        @include small {
+          width: 50px;
+          height: 50px;
+        }
+      }
     }
 
     &_info {
@@ -89,6 +106,9 @@
       height: auto;
       max-height: 527px;
     }
+    @include small {
+      max-height: none;
+    }
 
     .map {
       border-radius: 20px;
@@ -110,10 +130,22 @@
   position: absolute;
   left: 0;
   cursor: pointer;
-  transition: left 1s ease;
+  transition:  1s ease;
+  @include small {
+    width: 100%;
+    height: 40px;
+    top: 0;
+    svg {
+      transform: rotate(270deg);
+    }
+  }
 
   &_active {
     left: 100%;
     transform: translateX(calc(-60px));
+    @include small {
+      transform: translateY(0);
+      left: 0;
+    }
   }
 }

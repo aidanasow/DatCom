@@ -41,7 +41,7 @@ export const MobileHeader = () => {
   }, [isClose]);
 
   return (
-    <div className={classes.block}>
+    <header className={classes.block}>
       <div className={classes.block_logo}>
         <Link to="/">
           <DatComLogo />
@@ -63,6 +63,6 @@ export const MobileHeader = () => {
         </div>
       </div>
       <OpenMenu isClose={isClose} setIsClose={setIsClose} menuRef={menuRef} />
-    </div>
+    </header>
   );
 };

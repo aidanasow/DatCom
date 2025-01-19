@@ -11,7 +11,7 @@ export const useAboutUsStore = () => {
     const fetchAboutUs = async () => {
       try {
         const response = await fetchData(`/main-info/about-datcom/`);
-        setData(response);
+        setData(response[0]);
       } catch (error) {
         throw new Error(error);
       }

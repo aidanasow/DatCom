@@ -1,18 +1,21 @@
 import { PATHS } from "utils/constants/Constants";
 import classes from "./Services.module.scss";
 import {Button, Container, Typography} from "ui/index";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useServicesStore } from "./store/useServicesStore";
+import {Loader} from "pages/Loader/Loader.jsx";
 
 export const Services = () => {
   const { t } = useTranslation();
   const [desc, setDesc] = useState(0);
-  const { services } = useServicesStore();
+  const { services, loading } = useServicesStore();
   const [titles, setTitles] = useState([]);
   const [descriptions, setDescriptions] = useState([]);
   const [image, setImage] = useState("");
+
+
 
   useEffect(() => {
     if (services.length > 0 && services[0]?.included) {
@@ -25,11 +28,11 @@ export const Services = () => {
       setImage(services[0].image);
     }
   }, [services]);
-  if (services.length===0 ) return <div> </div>
+
   return (
       <Container>
         <Typography variant="heading">{t("titles.services")}</Typography>
-        <div className={classes.block}>
+        <div className={classes.block} >
           <div className={classes.block_top}>
             {titles.map((title, key) => (
                 <div

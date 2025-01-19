@@ -8,22 +8,21 @@ import {
     ReviewsBlock,
     ModalComponent,
 } from "modules/index";
-import { useStudentsStore } from "pages/Students/store/useStudentsStore";
-import { useCountriesStore } from "pages/Countries/store/useCountriesStore.js";
-import { useState, useEffect } from "react";
-import { Container, CustomCard, Typography } from "ui/index";
-import { useTranslation } from "react-i18next";
-import { UseSize } from "utils/helpers/useSize.jsx";
-import { Loader } from "pages/Loader/Loader.jsx";
+import {useStudentsStore} from "pages/Students/store/useStudentsStore";
+import {useCountriesStore} from "pages/Countries/store/useCountriesStore.js";
+import {useEffect, useRef, useState} from "react";
+import {Container, CustomCard, Typography} from "ui/index";
+import {useTranslation} from "react-i18next";
+import {UseSize} from "utils/helpers/useSize.jsx";
 
 export const Home = () => {
-    const { t } = useTranslation();
-    const { students } = useStudentsStore(0, 6);
-    const { countries } = useCountriesStore(0, 6);
+    const {t} = useTranslation();
+    const {students} = useStudentsStore(0, 6);
+    const {countries} = useCountriesStore(0, 6);
     const [open, setOpen] = useState(false);
     const [student, setStudent] = useState({});
-    const [loading, setLoading] = useState(true); // Управление состоянием загрузки
-    const { tablet, phone, miniTab, laptop } = UseSize();
+    const {tablet, phone, miniTab, laptop} = UseSize();
+    const serviceRef=useRef(null);
 
     let maxCards = 2;
     if (laptop) {
@@ -49,21 +48,31 @@ export const Home = () => {
     const closeModal = () => {
         setOpen(false);
     };
+    const scrollToElement = () => {
+        if (serviceRef.current) {
+            const offset = 50;
+            const elementPosition =
+                serviceRef.current.getBoundingClientRect().top + window.scrollY;
+            const scrollPosition = elementPosition - offset;
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: "smooth",
+            });
+        }
+    };
+
 
     useEffect(() => {
-        if (students && countries) {
-            setLoading(false);
+        if (location.pathname === "/services") {
+            scrollToElement()
         }
-    }, [students, countries]);
-
-    if (loading) return <Loader />;
+    }, [location.pathname]);
 
     return (
         <>
-            <Hero />
+            <Hero/>
             <Container>
-                <AboutUs />
-                {countries?.length > 0 ? (
+                <AboutUs/>
                     <>
                         <Typography variant="heading">{t("titles.countries")}</Typography>
                         <Slider
@@ -82,13 +91,15 @@ export const Home = () => {
                             )}
                         />
                     </>
-                ) : null}
-                <div id={"services"}>
+
+                <div id={"services"} ref={serviceRef}>
                     <Services />
                 </div>
+
+
                 {students?.length > 0 ? (
                     <>
-                        <Typography variant="heading">{t("titles.adStudents")}</Typography>
+                    <Typography variant="heading">{t("titles.adStudents")}</Typography>
                         <Slider
                             maxCards={cards}
                             sliderList={students}
@@ -107,13 +118,13 @@ export const Home = () => {
                 ) : null}
             </Container>
 
-            <ReviewsBlock />
+            <ReviewsBlock/>
             <Container>
-                <FAQBlock />
-                <Contacts />
+                <FAQBlock/>
+                <Contacts/>
             </Container>
 
-            <ModalComponent open={open} closeModal={closeModal} student={student} />
+            <ModalComponent open={open} closeModal={closeModal} student={student}/>
         </>
     );
 };

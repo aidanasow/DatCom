@@ -5,34 +5,24 @@ import { useEffect, useState } from "react";
 import { Loader } from "pages/index";
 
 export const AboutUs = () => {
-  const { data, loading } = useAboutUsStore();
-  const [aboutUs, setAboutUs] = useState();
+  const { data } = useAboutUsStore();
 
-  useEffect(() => {
-    if (!loading) {
-      setAboutUs(data);
-    }
-  }, [data, loading]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (!aboutUs || aboutUs.length === 0) {
+  if (data.length === 0) {
     return <div></div>;
   }
 
   return (
     <div className={classes.block}>
       <div className={classes.block_left}>
-          <img src={aboutUs[0].image} alt={aboutUs[0].title} />
+          <img src={data?.image} alt={data?.title} />
       </div>
       <div className={classes.block_right}>
         <Typography upp="upp" weight="bold" variant="h2">
-          {aboutUs[0].title}
+          {data?.title}
         </Typography>
         <Typography className={classes.desc}>
-          {aboutUs[0].description}
+          {data?.description}
         </Typography>
       </div>
     </div>

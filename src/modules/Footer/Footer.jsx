@@ -12,7 +12,7 @@ export const Footer = () => {
   const {t}=useTranslation();
 
   return (
-    <div className={classes.footer}>
+    <footer className={classes.footer}>
       <Container>
         <div className={classes.footerTop}>
           <div className={classes.logo}>
@@ -84,6 +84,6 @@ export const Footer = () => {
           </a>
         </div>
       </Container>
-    </div>
+    </footer>
   );
 };

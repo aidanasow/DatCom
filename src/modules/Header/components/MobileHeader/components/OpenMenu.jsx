@@ -9,35 +9,7 @@ import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 
 export const OpenMenu = ({ isClose, setIsClose, menuRef }) => {
   const { t } = useTranslation();
-  const location = useLocation();
   const {phone} = useContactsStore();
-
-  const scrollToElement = () => {
-    const element = document.getElementById("services");
-    if (element) {
-      const offset = 140;
-      const elementPosition =
-        element.getBoundingClientRect().top + window.scrollY;
-      const scrollPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: scrollPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    if (location.pathname === "/services") {
-      scrollToElement();
-    } else {
-      scrollToTop();
-    }
-  }, [location.pathname]);
 
   if (isClose === undefined) return null;
 

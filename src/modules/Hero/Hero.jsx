@@ -6,7 +6,6 @@ import { PATHS } from "utils/constants/Constants";
 import { useEffect, useState } from "react";
 import { useApiStore } from "utils/requester/requester";
 import { Loader } from "pages/index";
-import imageEmpty from "assets/images/empty.jpg";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 
 export const Hero = () => {
@@ -32,7 +31,7 @@ export const Hero = () => {
     fetchMainPage(i18n.language);
   }, [fetchData, i18n.language]);
 
-  // if (loading) return <Loader />;
+  if (loading) return <Loader />;
 
   const backgroundImage = data?.length > 0 && data[0]?.image ;
 

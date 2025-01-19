@@ -10,27 +10,8 @@ import { useContactsStore } from "modules/Contacts/store/useContactsStore.js";
 
 export const DesktopHeader = () => {
     const { t } = useTranslation();
-    const location = useLocation();
     const { phone } = useContactsStore();
     const [showTopHeader, setShowTopHeader] = useState(true);
-
-    const scrollToElement = () => {
-        const element = document.getElementById("services");
-        if (element) {
-            const offset = 140;
-            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-            const scrollPosition = elementPosition - offset;
-
-            window.scrollTo({
-                top: scrollPosition,
-                behavior: "smooth",
-            });
-        }
-    };
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
 
     const handleScroll = () => {
         setShowTopHeader(window.scrollY === 0)
@@ -44,17 +25,9 @@ export const DesktopHeader = () => {
         };
     }, []);
 
-    useEffect(() => {
-        if (location.pathname === "/services") {
-            scrollToElement();
-        } else {
-            scrollToTop();
-        }
-    }, [location.pathname]);
-
 
     return (
-        <div className={classes.header}>
+        <header className={classes.header}>
                 <div className={`${showTopHeader? classes.topHeader: classes.topHeaderNone}`}>
                     <div>
                         {phone && <Typography>{phone}</Typography> }
@@ -69,7 +42,7 @@ export const DesktopHeader = () => {
                     </Link>
                 </div>
                 {navigationData.map((nav, key) => (
-                    <Link to={nav.path} key={key} onClick={scrollToElement} className={classes.headerNav}>
+                    <Link to={nav.path} key={key} className={classes.headerNav}>
                         <Typography weight="regular">{t(nav.nav)}</Typography>
                     </Link>
                 ))}
@@ -79,6 +52,6 @@ export const DesktopHeader = () => {
                     </Link>
                 </Button>
             </nav>
-        </div>
+        </header>
     );
 };
