@@ -96,8 +96,7 @@ export const useFormLogic = (language) => {
             setState(initialState);
             setOpen(true);
             if (success) {
-                const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
-                window.location.href=link;
+                window.location.href=`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
             }
         } catch (error) {
             console.error("Error submitting form", error);
