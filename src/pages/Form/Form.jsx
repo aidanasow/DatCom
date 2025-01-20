@@ -36,7 +36,7 @@ export const Form = () => {
 
     useEffect(() => {
         if (success) {
-            window.open(`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`, "_blank");
+            window.location.href=`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
         }
     }, [success]);
 
