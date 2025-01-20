@@ -9,11 +9,7 @@ import {PATHS} from "utils/constants/Constants.jsx";
 import {useFormStore} from "pages/Form/store/useFormStore.js";
 
 const FormModal = ({open, setOpen}) => {
-    const { message, whatsappNumber}=useFormStore();
 
-    useEffect(() => {
-            window.location.href=`https://wa.me/${whatsappNumber}}`;
-    }, []);
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box

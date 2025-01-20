@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useFormStore} from "../store/useFormStore";
 import {useTranslation} from "react-i18next";
+import {redirect} from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -32,6 +33,9 @@ export const useFormLogic = (language) => {
         studyList,
         specialityList,
         loading,
+        success,
+        whatsappNumber,
+        message
     } = useFormStore();
 
     useEffect(() => {
@@ -92,6 +96,9 @@ export const useFormLogic = (language) => {
             await submitForm(state);
             setState(initialState);
             setOpen(true);
+            if (success) {
+                window.location.href = `https://wa.me/${whatsappNumber}?text=${t("form.message") + message}`;
+            }
         } catch (error) {
             console.error("Error submitting form", error);
         }
