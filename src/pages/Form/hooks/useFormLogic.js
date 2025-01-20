@@ -91,12 +91,27 @@ export const useFormLogic = (language) => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        await submitForm(state);
-        setState(initialState);
-        setOpen(true);
-        window.location.href = `https://wa.me/${whatsappNumber}?text=${t("form.message") + message}`;
+        const formDataString = `
+        ${t("titles.fullName")}: ${state.name}
+        ${t("titles.number")}: ${state.number}
+        ${t("titles.country")}: ${countryList.find(option => option.id === state.country)?.title || ''}
+        ${t("titles.direction")}: ${studyList.find(option => option.id === state.study)?.title || ''}
+        ${t("titles.speciality")}: ${specialityList.find(option => option.id === state.speciality)?.title || ''}
+    `;
 
+        try {
+            await submitForm(state);
+            setState(initialState);
+            setOpen(true);
+
+            const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+formDataString}`;
+            console.log(formDataString); // Для отладки
+            window.location.href = link;
+        } catch (error) {
+            console.error("Error submitting form", error);
+        }
     };
+
 
     return {
         state,
