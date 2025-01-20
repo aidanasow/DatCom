@@ -34,6 +34,7 @@ export const useFormLogic = (language) => {
         message,
         whatsappNumber,
         loading,
+        success
     } = useFormStore();
 
     useEffect(() => {
@@ -94,8 +95,10 @@ export const useFormLogic = (language) => {
             await submitForm(state);
             setState(initialState);
             setOpen(true);
-            const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
-            window.location.href=link;
+            if (success) {
+                const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
+                window.location.href=link;
+            }
         } catch (error) {
             console.error("Error submitting form", error);
         }
