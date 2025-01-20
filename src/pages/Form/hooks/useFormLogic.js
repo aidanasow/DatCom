@@ -31,10 +31,7 @@ export const useFormLogic = (language) => {
         countryList,
         studyList,
         specialityList,
-        message,
-        whatsappNumber,
         loading,
-        success
     } = useFormStore();
 
     useEffect(() => {
@@ -95,9 +92,6 @@ export const useFormLogic = (language) => {
             await submitForm(state);
             setState(initialState);
             setOpen(true);
-            if (success) {
-                window.open(`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`, "_blank");
-            }
         } catch (error) {
             console.error("Error submitting form", error);
         }

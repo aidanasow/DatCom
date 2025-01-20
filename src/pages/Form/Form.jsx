@@ -29,9 +29,16 @@ export const Form = () => {
         handleInputChange,
         onFormSubmit,
     } = useFormLogic(i18n.language);
+    const { message, whatsappNumber, success}=useFormStore();
     const getErrorStyles = (hasError) => ({
         color: hasError ? "#eb5757" : "inherit",
     });
+
+    useEffect(() => {
+        if (success) {
+            window.open(`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`, "_blank");
+        }
+    }, [success]);
 
     if (loading) return <Loader/>;
 
