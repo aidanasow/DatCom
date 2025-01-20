@@ -96,7 +96,7 @@ export const useFormLogic = (language) => {
         ${t("titles.number")}: ${state.number}
         ${t("titles.country")}: ${countryList.find(option => option.id === state.country)?.title || ''}
         ${t("titles.direction")}: ${studyList.find(option => option.id === state.study)?.title || ''}
-        ${t("titles.speciality")}: ${specialityList.find(option => option.id === state.speciality)?.title || ''}
+        ${t("titles.specialty")}: ${specialityList.find(option => option.id === state.speciality)?.title || ''}
     `;
 
         try {
