@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 export const Contacts = () => {
     const { contacts } = useContactsStore();
     const { t } = useTranslation();
-    const { shift, address, phonenumber, instagram, telegram } = contacts || {};
+    const { shift, address, phonenumber, instagram, telegram, geo } = contacts || {};
     const isTablet = useMediaQuery("(max-width: 900px)");
     const [state, setState] = useState(false);
 
@@ -33,7 +33,6 @@ export const Contacts = () => {
     const openContacts = () => {
         setState(!state);
     };
-
     return (
         <>
             <Typography variant="heading">{t("titles.contacts")}</Typography>
@@ -125,13 +124,12 @@ export const Contacts = () => {
                     </div>
                 )}
                 <div ref={blockRightRef} className={classes.block_right}>
-                    <iframe
-                        className={classes.map}
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.697068557148!2d74.61568007617974!3d42.87923767114932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb75503e9feef%3A0xa079c9abc97cb6da!2zRGF0Q29tLdGD0YfQtdCx0LAg0LfQsCDQs9GA0LDQvdC40YbQtdC5!5e0!3m2!1sru!2skg!4v1732734310852!5m2!1sru!2skg"
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                    />
+                   <iframe
+                            className={classes.map}
+                            src={contacts?.geo}
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        />
                 </div>
             </div>
         </>

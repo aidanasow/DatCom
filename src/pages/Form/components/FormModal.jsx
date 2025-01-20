@@ -4,6 +4,8 @@ import {Typography} from "ui/Typography/Typography.jsx";
 import classes from "pages/Form/Form.module.scss";
 import {Button} from "ui/Button/Button.jsx";
 import {t} from "i18next";
+import {Link} from "react-router-dom";
+import {PATHS} from "utils/constants/Constants.jsx";
 
 const FormModal = ({open, setOpen}) => {
     return (
@@ -33,9 +35,11 @@ const FormModal = ({open, setOpen}) => {
                         {t("titles.modal")}
                     </Typography>
                     <Button className={classes.modalBtn}>
-                        <Typography variant="h5" weight="semiBold">
-                            {t("buttonsText.goToHome")}
-                        </Typography>
+                        <Link to={PATHS.home}>
+                            <Typography variant="h5" weight="semiBold">
+                                {t("buttonsText.goToHome")}
+                            </Typography>
+                        </Link>
                     </Button>
                 </Box>
             </Box>

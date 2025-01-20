@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFormStore } from "../store/useFormStore";
+import {useTranslation} from "react-i18next";
 
 const initialState = {
     name: "",
@@ -21,7 +22,7 @@ export const useFormLogic = (language) => {
     const [state, setState] = useState(initialState);
     const [errors, setErrors] = useState(initialErrors);
     const [open, setOpen] = useState(false);
-
+    const {t}=useTranslation();
     const {
         submitForm,
         fetchCountries,
@@ -79,15 +80,13 @@ export const useFormLogic = (language) => {
 
     const onFormSubmit = async (e) => {
         e.preventDefault();
-
         if (!validateForm()) return;
-
         try {
             await submitForm(state);
-            setOpen(true);
             setState(initialState);
-            const link = `https://wa.me/${whatsappNumber}?text=Здравствуйте!${message}`;
+            const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
             window.open(link, "_blank");
+            setOpen(true);
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -95,6 +94,8 @@ export const useFormLogic = (language) => {
 
     return {
         state,
+        setState,
+        setErrors,
         errors,
         open,
         loading,

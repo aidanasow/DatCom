@@ -57,4 +57,22 @@ export const generateBreadcrumbs = (key, thirdElement = null) => {
 };
 
 
-
+export const sharedTextFieldStyles = {
+  textAlign: "start",
+  "& .MuiOutlinedInput-root": {
+    height: "45px",
+    borderRadius: "8px",
+    background: "var(--color-white)",
+    outline: "none",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "10px",
+  },
+  "& .MuiInputLabel-root": {
+    lineHeight: "1.2",
+    top: "-4px",
+  },
+  "& .MuiInputLabel-shrink": {
+    top: "0px",
+  },
+};

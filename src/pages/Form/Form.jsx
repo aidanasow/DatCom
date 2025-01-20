@@ -1,34 +1,15 @@
 import {useFormLogic} from "./hooks/useFormLogic";
-import {Typography, Container, Button} from "ui/index";
+import {Typography, Container, Button, Breadcrumbs} from "ui/index";
 import classes from "./Form.module.scss";
 import formImage from "assets/images/formImage.png";
 import {TextField, MenuItem,} from "@mui/material";
-import {IMaskInput} from "react-imask";
 import {useTranslation} from "react-i18next";
-import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
-import {Loader} from "pages/Loader/Loader.jsx";
+import {Loader} from "pages/index";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
-import FormModal from "pages/Form/components/FormModal.jsx";
+import FormModal from "./components/FormModal.jsx";
+import {sharedTextFieldStyles} from "utils/constants/Constants.jsx";
+import {IMaskInput} from "react-imask";
 
-const sharedTextFieldStyles = {
-    textAlign: "start",
-    "& .MuiOutlinedInput-root": {
-        height: "45px",
-        borderRadius: "8px",
-        background: "var(--color-white)",
-        outline: "none",
-    },
-    "& .MuiOutlinedInput-input": {
-        padding: "10px",
-    },
-    "& .MuiInputLabel-root": {
-        lineHeight: "1.2",
-        top: "-4px",
-    },
-    "& .MuiInputLabel-shrink": {
-        top: "0px",
-    },
-};
 
 export const Form = () => {
     const {t, i18n} = useTranslation();
@@ -36,6 +17,8 @@ export const Form = () => {
     const {
         state,
         errors,
+        setState,
+        setErrors,
         open,
         loading,
         countryList,

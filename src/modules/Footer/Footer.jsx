@@ -8,7 +8,7 @@ import novaLogo from "assets/images/novaLogo.png";
 import {useTranslation} from "react-i18next";
 
 export const Footer = () => {
-  const {contacts, policy} = useContactsStore();
+  const {contacts, policy, novaLabsLink} = useContactsStore();
   const {t}=useTranslation();
 
   return (
@@ -79,7 +79,7 @@ export const Footer = () => {
           <Typography variant="smallBody">
             <a href={policy} target="_blank">{t("nav.policy")}</a>
           </Typography>
-          <a className={classes.ourLogo} href="#" >
+          <a className={classes.ourLogo} href={novaLabsLink} target={"_blank"}>
             <img src={novaLogo} alt="made by Novalabs"/>
           </a>
         </div>

@@ -3,9 +3,6 @@ import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 import {InstagramIcon} from "assets/icons/InstagramIcon.jsx";
 import {TelegramIcon} from "assets/icons/TelegramIcon.jsx";
 import {WhatsappIcon} from "assets/icons/WhatsappIcon.jsx";
-import {useEffect} from "react";
-import i18n from "i18next";
-
 export const SocialMedia = ({ header }) => {
   const {contacts,phone} = useContactsStore();
 

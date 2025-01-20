@@ -8,3 +8,4 @@ export { FAQBlock } from "./FAQBlock/FAQBlock";
 export { Contacts } from "./Contacts/Contacts";
 export { ReviewsBlock } from "./ReviewsBlock/ReviewsBlock";
 export { ModalComponent } from "./Modal/ModalComponent";
+export {PaginationComponent} from "./PaginationComponent/PaginationComponent.jsx";

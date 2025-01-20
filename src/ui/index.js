@@ -4,3 +4,4 @@ export { Typography } from "./Typography/Typography";
 export { SocialMedia } from "./SocialMedia/SocialMedia";
 export { CustomCard } from "./CustomCard/CustomCard";
 export { ReviewCard } from "./ReviewCard/ReviewCard";
+export {Breadcrumbs} from "./Breadcrumbs/Breadcrumbs";

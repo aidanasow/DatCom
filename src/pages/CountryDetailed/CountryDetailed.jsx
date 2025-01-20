@@ -1,10 +1,9 @@
 import {useParams} from "react-router-dom";
-import {Container, CustomCard, Typography} from "ui/index";
+import {Container, CustomCard, Typography, Breadcrumbs} from "ui/index";
 import {useCountryDetailedStore} from "./store/useCountryDetailedStore";
 import classes from "./CountryDetailed.module.scss";
 import {CountryStepper} from "./components/Stepper/Stepper";
 import {Slider} from "modules/index";
-import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 import {Loader} from "pages/Loader/Loader.jsx";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {useTranslation} from "react-i18next";

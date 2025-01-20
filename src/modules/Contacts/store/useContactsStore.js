@@ -6,6 +6,7 @@ export const useContactsStore = create((set, get) => {
     contacts: {},
     phone: null,
     policy: "",
+    novaLabsLink: "",
     loading,
     error: null,
     fetchContacts: async () => {
@@ -25,6 +26,15 @@ export const useContactsStore = create((set, get) => {
       try {
         const response = await fetchData(`/main-info/privacy-policy/`);
         set({ policy: response[0]?.file,});
+      } catch (error) {
+        set({ error: error.message });
+        console.error("Failed to fetch policy:", error);
+      }
+    },
+    fetchNovaLabsLink: async () => {
+      try {
+        const response = await fetchData(`/main-info/link/`);
+        set({ novaLabsLink: response.site_link});
       } catch (error) {
         set({ error: error.message });
         console.error("Failed to fetch policy:", error);

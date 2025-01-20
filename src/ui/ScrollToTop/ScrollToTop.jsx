@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 
 export const ScrollToTop = () => {
     const [showArrowTop, setShowArrowTop] = useState(false);
-    const {phone, fetchContacts, fetchPolicy }=useContactsStore();
+    const {phone, fetchContacts, fetchPolicy, fetchNovaLabsLink }=useContactsStore();
     const {i18n}=useTranslation();
     const handleArrowTopClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -23,7 +23,8 @@ export const ScrollToTop = () => {
     }, []);
     useEffect(() => {
         fetchContacts();
-        fetchPolicy()
+        fetchPolicy();
+        fetchNovaLabsLink();
     }, [i18n.language]);
 
     return (

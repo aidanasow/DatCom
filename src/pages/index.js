@@ -8,3 +8,4 @@ export { Form } from "./Form/Form";
 export { Students } from "./Students/Students";
 export { Universities } from "./Universities/Universities";
 export { DetailedUniversity } from "./Universities/components/DetailedUniversity/DetailedUniversity";
+

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import classes from "./Universities.module.scss";
-import {Typography, Container, CustomCard, Button} from "ui/index";
+import {Typography, Container, CustomCard, Button, Breadcrumbs} from "ui/index";
 import { useUniversitiesStore } from "./store/useUniversitiesStore";
-import { PaginationComponent } from "modules/PaginationComponent/PaginationComponent";
+import { PaginationComponent } from "modules/index";
 import { InputAdornment, MenuItem, TextField } from "@mui/material";
 import { Search } from "assets/index";
-import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 import { Loader } from "pages/Loader/Loader.jsx";
 import { useTranslation } from "react-i18next";
+import {UseSize} from "utils/helpers/useSize.jsx";
 
 export const Universities = () => {
     const { t } = useTranslation();
@@ -19,7 +19,9 @@ export const Universities = () => {
         programm: "",
     });
     const [tempSearch, setTempSearch] = useState("");
-    const limit = 12;
+    const { tablet}=UseSize();
+    let limit = 12;
+    if (tablet) limit=6;
 
     const { universities, countryList, programmList, count, loading } =
         useUniversitiesStore(offset, limit, state);
@@ -183,13 +185,13 @@ export const Universities = () => {
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <Button variant={"secondary"} size={"short"} onClick={()=>{setState({
+                        <button className={classes.clearButton}  onClick={()=>{setState({
                             search: "",
                             country: "",
                             programm: "",
                         })}}>
-                            <Typography weight="small"> {t("buttonsText.clear")}</Typography>
-                        </Button>
+                            <Typography > x</Typography>
+                        </button>
                     </div>
                     <div className={classes.cardWrapper}>
                         {universities.length > 0 ? (

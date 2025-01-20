@@ -35,4 +35,13 @@
       height: 24px;
     }
   }
+  .clearButton {
+    padding: 8px 15px;
+    border-radius: 8px;
+    color: var(--color-gray2);
+    border: 1.5px solid var(--color-gray1);
+    background-color: #fff;
+    cursor: pointer;
+
+  }
 }

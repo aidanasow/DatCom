@@ -52,7 +52,8 @@
     "fillForm": "Fill out the form to begin the admission process",
     "validation": "This field is required.",
     "fullName": "Enter your full name",
-    "error": "Error when submitting form:"
+    "error": "Error when submitting form:",
+    "message": "Hello! I would like to get a consultation.  "
   },
 
   "search": {

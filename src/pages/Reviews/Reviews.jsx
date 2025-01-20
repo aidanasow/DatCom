@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-import { Typography, Container, ReviewCard } from "ui/index";
+import {useState } from "react";
+import { Typography, Container, ReviewCard, Breadcrumbs } from "ui/index";
 import classes from "./Reviews.module.scss";
-import { StarIcon } from "assets/index";
+import { StarIcon, StarEmptyIcon } from "assets/index";
 import { useReviewsStore } from "./store/useReviewsStore";
-import { PaginationComponent } from "modules/PaginationComponent/PaginationComponent";
-import { Slider } from "modules/index";
+import { Slider, PaginationComponent } from "modules/index";
 import ReactPlayer from "react-player";
-import { StarEmptyIcon } from "assets/icons/StarEmptyIcon";
 import { Loader } from "..";
-import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
 import {useTranslation} from "react-i18next";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 

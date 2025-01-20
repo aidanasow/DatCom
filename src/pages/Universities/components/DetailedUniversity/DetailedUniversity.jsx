@@ -1,12 +1,10 @@
 import classes from "./DetailedUniversity.module.scss";
-import { Typography, Container, CustomCard } from "ui/index";
+import { Typography, Container, CustomCard , Breadcrumbs} from "ui/index";
 import { useDetailedUniversityStore } from "./store/useDetailedUniversityStore";
 import { useParams } from "react-router-dom";
 import { Slider, ReviewsBlock, ModalComponent } from "modules/index";
 import { useState } from "react";
 import { useMediaQuery } from "utils/helpers/useMedia";
-import Breadcrumbs from "ui/Breadcrumbs/Breadcrumbs.jsx";
-import {Loader} from "pages/Loader/Loader.jsx";
 import {useTranslation} from "react-i18next";
 
 export const DetailedUniversity = () => {

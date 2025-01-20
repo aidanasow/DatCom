@@ -7,7 +7,7 @@ import classes from "./Breadcrumbs.module.scss";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {useTranslation} from "react-i18next";
 
-const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
+export const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
     const { t } = useTranslation();
     const breadcrumbs = generateBreadcrumbs(breadcrumbKey, thirdElement);
     const isDesktop=useMediaQuery("(min-width: 900px)");
@@ -41,4 +41,3 @@ const Breadcrumbs = ({ breadcrumbKey, thirdElement }) => {
     );
 };
 
-export default Breadcrumbs;
