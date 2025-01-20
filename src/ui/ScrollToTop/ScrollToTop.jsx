@@ -3,10 +3,12 @@ import classes from  "./ScrollToTop.module.scss";
 import {useContactsStore} from "modules/Contacts/store/useContactsStore.js";
 import {ScrollIcon, whatsappImg} from "assets/index";
 import {useTranslation} from "react-i18next";
+import {useFormStore} from "pages/Form/store/useFormStore.js";
 
 export const ScrollToTop = () => {
     const [showArrowTop, setShowArrowTop] = useState(false);
     const {phone, fetchContacts, fetchPolicy, fetchNovaLabsLink }=useContactsStore();
+    const {fetchMainContact}=useFormStore();
     const {i18n}=useTranslation();
     const handleArrowTopClick = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -25,6 +27,7 @@ export const ScrollToTop = () => {
         fetchContacts();
         fetchPolicy();
         fetchNovaLabsLink();
+        fetchMainContact();
     }, [i18n.language]);
 
     return (

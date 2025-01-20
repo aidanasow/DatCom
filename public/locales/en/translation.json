@@ -53,7 +53,8 @@
     "validation": "This field is required.",
     "fullName": "Enter your full name",
     "error": "Error when submitting form:",
-    "message": "Hello! I would like to get a consultation.  "
+    "message": "Hello! I would like to get a consultation.",
+    "phoneNumberInvalid": "Invalid phoneNumber"
   },
 
   "search": {

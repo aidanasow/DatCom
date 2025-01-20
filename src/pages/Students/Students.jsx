@@ -23,7 +23,6 @@ export const Students = () => {
     setCurrentPage(page);
     setOffset((page - 1) * limit);
   };
-  console.log(currentPage)
 
   const openModal = (student) => {
     setOpen(true);

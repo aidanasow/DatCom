@@ -8,17 +8,18 @@ import {Loader} from "pages/index";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import FormModal from "./components/FormModal.jsx";
 import {sharedTextFieldStyles} from "utils/constants/Constants.jsx";
-import {IMaskInput} from "react-imask";
+import {useEffect} from "react";
+import {useFormStore} from "pages/Form/store/useFormStore.js";
+
 
 
 export const Form = () => {
     const {t, i18n} = useTranslation();
     const isTablet = useMediaQuery("(max-width: 700px)");
+    const {fetchMainContact}=useFormStore();
     const {
         state,
         errors,
-        setState,
-        setErrors,
         open,
         loading,
         countryList,
@@ -33,6 +34,7 @@ export const Form = () => {
     });
 
     if (loading) return <Loader/>;
+
 
     return (
         <>
@@ -63,23 +65,11 @@ export const Form = () => {
                                     name="number"
                                     label={t("titles.number")}
                                     variant="outlined"
-                                    value={state.number}
-                                    slotProps={{
-                                        input: {
-                                            inputComponent: IMaskInput,
-                                            inputProps: {
-                                                mask: "+996 (000) 000 000",
-                                                onAccept: (value) => {
-                                                    handleInputChange({
-                                                        target: {name: "number", value},
-                                                    });
-                                                },
-                                                unmask: true,
-                                            },
-                                        },
-                                    }}
+                                    value={state.number || "+996"}
+                                    onChange={handleInputChange}
                                     error={!!errors.number}
                                     helperText={errors.number ? t(errors.number) : ""}
+                                    inputProps={{ maxLength: 13 }}
                                     sx={sharedTextFieldStyles}
                                 />
 

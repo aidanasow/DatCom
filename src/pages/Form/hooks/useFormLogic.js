@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useFormStore } from "../store/useFormStore";
+import {useEffect, useState} from "react";
+import {useFormStore} from "../store/useFormStore";
 import {useTranslation} from "react-i18next";
 
 const initialState = {
@@ -37,9 +37,9 @@ export const useFormLogic = (language) => {
     } = useFormStore();
 
     useEffect(() => {
-        fetchCountries(language);
-        fetchStudies(language);
-        fetchSpecialities(language);
+        fetchCountries();
+        fetchStudies();
+        fetchSpecialities();
     }, [language]);
 
     const handleInputChange = (e) => {
@@ -59,6 +59,14 @@ export const useFormLogic = (language) => {
             case "name":
                 return value.trim() ? "" : "form.fullName";
             case "number":
+                const phoneRegex =  /^\+996([2579])([25079]\d{0,7})$/;
+                if (!value.trim()) {
+                    return "form.validation";
+                }
+                if (!phoneRegex.test(value)) {
+                    return "form.phoneNumberInvalid";
+                }
+                return "";
             case "country":
             case "study":
             case "speciality":
@@ -78,15 +86,16 @@ export const useFormLogic = (language) => {
         return Object.keys(newErrors).length === 0;
     };
 
+
     const onFormSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
         try {
             await submitForm(state);
             setState(initialState);
+            setOpen(true);
             const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
             window.open(link, "_blank");
-            setOpen(true);
         } catch (error) {
             console.error("Error submitting form", error);
         }

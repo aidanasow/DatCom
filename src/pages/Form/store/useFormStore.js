@@ -55,6 +55,19 @@ export const useFormStore = create((set, get) => ({
       set({ loading: false });
     }
   },
+  fetchMainContact: async () => {
+    const { fetchData } = useApiStore.getState();
+    set({ loading: true });
+    try {
+      const response = await fetchData(`/main-info/contact-for-application/`);
+      set({ whatsappNumber: response.main_number });
+    } catch (error) {
+      console.error("Error fetching specialities:", error.message);
+      throw new Error(error);
+    } finally {
+      set({ loading: false });
+    }
+  },
 
   submitForm: async (formData) => {
     const { postRequest } = useApiStore.getState();
@@ -70,7 +83,6 @@ export const useFormStore = create((set, get) => ({
 
       if (response?.data?.text) {
         set({message:response.data.text})
-        set({ whatsappNumber:response.data.phone_number});
       }
       set({ success: response.data });
       return response.data;

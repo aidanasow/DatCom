@@ -30,7 +30,6 @@ export const useApiStore = create((set) => ({
     set({ loading: true });
     try {
       const { data } = await requester.get(url);
-
       if (!data) {
         throw new Error("Not Found");
       }
