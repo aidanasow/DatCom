@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Modal} from "@mui/material";
 import {Typography} from "ui/Typography/Typography.jsx";
 import classes from "pages/Form/Form.module.scss";
@@ -6,8 +6,15 @@ import {Button} from "ui/Button/Button.jsx";
 import {t} from "i18next";
 import {Link} from "react-router-dom";
 import {PATHS} from "utils/constants/Constants.jsx";
+import {useFormStore} from "pages/Form/store/useFormStore.js";
 
 const FormModal = ({open, setOpen}) => {
+    const { message, whatsappNumber, success}=useFormStore();
+    useEffect(() => {
+        if (success) {
+            window.location.href=`https://wa.me/${whatsappNumber}?text=${t("form.message")+message}`;
+        }
+    }, [success]);
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box
