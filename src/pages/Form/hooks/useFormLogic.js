@@ -23,7 +23,7 @@ export const useFormLogic = (language) => {
     const [state, setState] = useState(initialState);
     const [errors, setErrors] = useState(initialErrors);
     const [open, setOpen] = useState(false);
-    const {t}=useTranslation();
+    const {t} = useTranslation();
     const {
         submitForm,
         fetchCountries,
@@ -33,7 +33,6 @@ export const useFormLogic = (language) => {
         studyList,
         specialityList,
         loading,
-        success,
         whatsappNumber,
         message
     } = useFormStore();
@@ -45,7 +44,7 @@ export const useFormLogic = (language) => {
     }, [language]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setState((prevState) => ({
             ...prevState,
             [name]: value,
@@ -61,7 +60,7 @@ export const useFormLogic = (language) => {
             case "name":
                 return value.trim() ? "" : "form.fullName";
             case "number":
-                const phoneRegex =  /^\+996([2579])([25079]\d{0,7})$/;
+                const phoneRegex = /^\+996([2579])([25079]\d{0,7})$/;
                 if (!value.trim()) {
                     return "form.validation";
                 }
@@ -92,16 +91,11 @@ export const useFormLogic = (language) => {
     const onFormSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        try {
-            await submitForm(state);
-            setState(initialState);
-            setOpen(true);
-            if (success) {
-                window.location.href = `https://wa.me/${whatsappNumber}?text=${t("form.message") + message}`;
-            }
-        } catch (error) {
-            console.error("Error submitting form", error);
-        }
+        await submitForm(state);
+        setState(initialState);
+        setOpen(true);
+        window.location.href = `https://wa.me/${whatsappNumber}?text=${t("form.message") + message}`;
+
     };
 
     return {
