@@ -1,14 +1,12 @@
 import classes from "./AboutUs.module.scss";
 import { Typography } from "ui/index";
 import { useAboutUsStore } from "./store/useAboutUsStore";
-import { useEffect, useState } from "react";
-import { Loader } from "pages/index";
 
 export const AboutUs = () => {
   const { data } = useAboutUsStore();
 
 
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return <div></div>;
   }
 

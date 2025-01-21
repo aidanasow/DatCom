@@ -7,14 +7,14 @@ export const SocialMedia = ({ header }) => {
   const {contacts,phone} = useContactsStore();
 
   const SocialMediaData = [
-    { icon: <InstagramIcon />, link: contacts.instagram },
-    { icon: <TelegramIcon />, link: contacts.telegram },
+    { icon: <InstagramIcon />, link: contacts?.instagram },
+    { icon: <TelegramIcon />, link: contacts?.telegram },
     {icon: <WhatsappIcon />, link: `https://wa.me/${phone}` },
   ];
 
   return (
     <div className={classes.block}>
-      {SocialMediaData.map((media, key) => (
+      {SocialMediaData?.map((media, key) => (
         <a
           href={media.link}
           key={key}
