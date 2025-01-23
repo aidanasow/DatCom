@@ -44,14 +44,13 @@
       }
 
       @include small-medium {
-        grid-column: 1;
-        grid-row: 2;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-evenly;
         gap: 24px;
-        margin-bottom: 20px;
-        max-width: 220px;
+        margin:0 auto 20px;
+        max-width: 300px;
+
       }
     }
 
@@ -66,7 +65,7 @@
         grid-column: 1;
         grid-row: 4;
         justify-self: center;
-        margin-top: 10px;
+        margin: 10px auto 0;
       }
       &_wrap {
         display: flex;
@@ -75,6 +74,9 @@
           max-width: 240px;
           overflow: clip;
           height: auto;
+          @include small-medium {
+            width: 180px;
+          }
         }
         &_icon {
           margin: 5px 0 0 5px;
@@ -101,6 +103,10 @@
         grid-row: 5;
         justify-self: center;
         padding-right: 32px;
+      }
+      @include small-medium {
+        width: 220px;
+        padding: 0 0 0 5px;
       }
       .phoneIcon {
         width: 24px;

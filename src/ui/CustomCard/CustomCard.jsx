@@ -45,7 +45,7 @@ export const CustomCard = ({
         <Typography variant="h3" weight="regular" truncate={20} className={classes.head}>
           {title}
         </Typography>
-        <Typography truncate={isMain? 200: false} className={`${desc}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>
+        <Typography className={`${desc}  ${isMain? classes.mainStudentDesc: ""}`}>{description}</Typography>
         {modal ? (
           <Typography
             weight="regular"
