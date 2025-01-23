@@ -43,7 +43,7 @@ export const Contacts = () => {
                 >
                     <div className={classes.block_left_info}>
                         <div className={`${classes.iconBlock} ${classes.changeIcon}`}>
-                            <ClockIcon />
+                            <ClockIcon size={50}/>
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
@@ -69,7 +69,7 @@ export const Contacts = () => {
                     </div>
                     <div className={classes.block_left_info}>
                         <div className={`${classes.iconBlock} ${classes.changeIcon}`}>
-                            <PhoneIcon />
+                            <PhoneIcon color={"white"} size={50}/>
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">
