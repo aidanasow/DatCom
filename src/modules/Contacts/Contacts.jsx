@@ -56,7 +56,7 @@ export const Contacts = () => {
                     </div>
                     <div className={classes.block_left_info}>
                         <div className={`${classes.iconBlock} ${classes.changeIcon}`}>
-                            <LocationIcon />
+                            <LocationIcon size={50} />
                         </div>
                         <div className={classes.infoBlock}>
                             <Typography variant="h4" color="white" weight="bold">

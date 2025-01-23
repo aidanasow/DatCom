@@ -28,19 +28,16 @@ export const useFormLogic = (language) => {
         submitForm,
         fetchCountries,
         fetchStudies,
-        fetchSpecialities,
         countryList,
         studyList,
         specialityList,
         loading,
         whatsappNumber,
-        message
     } = useFormStore();
 
     useEffect(() => {
         fetchCountries();
         fetchStudies();
-        fetchSpecialities();
     }, [language]);
 
     const handleInputChange = (e) => {
@@ -96,17 +93,17 @@ export const useFormLogic = (language) => {
         ${t("titles.number")}: ${state.number}
         ${t("titles.country")}: ${countryList.find(option => option.id === state.country)?.title || ''}
         ${t("titles.direction")}: ${studyList.find(option => option.id === state.study)?.title || ''}
-        ${t("titles.specialty")}: ${specialityList.find(option => option.id === state.speciality)?.title || ''}
     `;
 
         try {
             await submitForm(state);
             setState(initialState);
             setOpen(true);
+            const link = `https://wa.me/${whatsappNumber}?text=${t("form.message") + formDataString}`;
+            setTimeout(()=>{
+                window.open(link, "_blank");
+            }, 2000)
 
-            const link = `https://wa.me/${whatsappNumber}?text=${t("form.message")+formDataString}`;
-            console.log(formDataString); // Для отладки
-            window.location.href = link;
         } catch (error) {
             console.error("Error submitting form", error);
         }
@@ -122,7 +119,6 @@ export const useFormLogic = (language) => {
         loading,
         countryList,
         studyList,
-        specialityList,
         setOpen,
         handleInputChange,
         onFormSubmit,

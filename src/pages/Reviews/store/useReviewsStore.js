@@ -4,7 +4,7 @@ import { useApiStore } from "utils/requester/requester";
 export const useReviewsStore = (offset = 0, limit = 6) => {
   const [reviews, setReviews] = useState([]);
   const [video, setVideo] = useState([]);
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(null);
   const [count, setCount] = useState(0);
   const { fetchData, loading } = useApiStore();
 

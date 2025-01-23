@@ -8,15 +8,12 @@ import {Loader} from "pages/index";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
 import FormModal from "./components/FormModal.jsx";
 import {sharedTextFieldStyles} from "utils/constants/Constants.jsx";
-import {useEffect} from "react";
-import {useFormStore} from "pages/Form/store/useFormStore.js";
 
 
 
 export const Form = () => {
     const {t, i18n} = useTranslation();
     const isTablet = useMediaQuery("(max-width: 700px)");
-    const {fetchMainContact}=useFormStore();
     const {
         state,
         errors,
@@ -24,7 +21,6 @@ export const Form = () => {
         loading,
         countryList,
         studyList,
-        specialityList,
         setOpen,
         handleInputChange,
         onFormSubmit,
@@ -131,30 +127,18 @@ export const Form = () => {
                                 </TextField>
 
                                 <TextField
-                                    id="speciality"
+                                    label={t("titles.specialty")}
                                     name="speciality"
-                                    select
+                                    variant={"outlined"}
                                     value={state.speciality}
                                     onChange={handleInputChange}
                                     error={!!errors.speciality}
                                     helperText={errors.speciality ? t(errors.speciality) : ""}
-                                    sx={{
-                                        ...sharedTextFieldStyles,
-                                        "& .MuiOutlinedInput-input": getErrorStyles(!!errors.country),
-                                        "& .MuiSelect-select": getErrorStyles(!!errors.country),
-                                    }}
-                                    SelectProps={{
-                                        displayEmpty: true,
-                                    }}
+                                    sx={sharedTextFieldStyles
+                                    }
+
                                 >
-                                    <MenuItem value="" disabled>
-                                        {t("titles.specialty")}
-                                    </MenuItem>
-                                    {specialityList?.map((option) => (
-                                        <MenuItem key={option.id} value={option.id}>
-                                            {option.title}
-                                        </MenuItem>
-                                    ))}
+
                                 </TextField>
 
                                 <Button type="submit" size="default" fullWidth={true}>

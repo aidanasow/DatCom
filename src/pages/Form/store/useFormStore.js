@@ -5,7 +5,6 @@ import {redirect} from "react-router-dom";
 export const useFormStore = create((set, get) => ({
     countryList: [],
     studyList: [],
-    specialityList: [],
     loading: false,
     success: null,
     message: "",
@@ -43,19 +42,6 @@ export const useFormStore = create((set, get) => ({
         }
     },
 
-    fetchSpecialities: async () => {
-        const {fetchData} = useApiStore.getState();
-        set({loading: true});
-        try {
-            const response = await fetchData(`services/degree/`);
-            set({specialityList: response.results});
-        } catch (error) {
-            console.error("Error fetching specialities:", error.message);
-            throw new Error(error);
-        } finally {
-            set({loading: false});
-        }
-    },
     fetchMainContact: async () => {
         const {fetchData} = useApiStore.getState();
         set({loading: true});
