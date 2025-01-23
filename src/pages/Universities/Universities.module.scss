@@ -38,10 +38,13 @@
   .clearButton {
     padding: 8px 15px;
     border-radius: 8px;
-    color: var(--color-gray2);
+    color: var(--color-gray3);
     border: 1.5px solid var(--color-gray1);
     background-color: #fff;
     cursor: pointer;
-
+    &:disabled {
+      cursor: auto;
+      color: var(--color-gray1);
+    }
   }
 }

@@ -101,7 +101,7 @@ export const Universities = () => {
                                                     {
                                                         tempSearch!==""?
                                                             <div onClick={clearInput}
-                                                                    style={{cursor: "pointer"}}>&#10006;</div>
+                                                                    style={{cursor: "pointer"}}> &#10008;</div>
                                                             :  <Search/>
                                                     }
                                                 </div>
@@ -185,12 +185,13 @@ export const Universities = () => {
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <button className={classes.clearButton}  onClick={()=>{setState({
+                        <button   disabled={!Object.values(state).some(value => value)}
+                                  className={classes.clearButton}  onClick={()=>{setState({
                             search: "",
                             country: "",
                             programm: "",
                         })}}>
-                            <Typography > x</Typography>
+                             &#10008;
                         </button>
                     </div>
                     <div className={classes.cardWrapper}>
