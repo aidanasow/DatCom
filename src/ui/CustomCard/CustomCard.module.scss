@@ -90,13 +90,16 @@
       max-width: 289px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 5;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.4em;
 
       @media (max-width: 1200px)  {
         max-width: none;
+      }
+      @include small {
+        line-height: 1.2em;
       }
 
 
