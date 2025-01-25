@@ -22,7 +22,8 @@
       position: relative;
       color: var(--color-primary);
       flex-grow: 1;
-      height: 84px;
+      min-height: 84px;
+      height: auto;
       padding: 20px;
       cursor: pointer;
 
@@ -58,8 +59,10 @@
     padding: 16px 20px;
     display: flex;
     justify-content: space-between;
+    gap: 24px;
     @include medium {
       flex-direction: column;
+      gap: 0;
     }
     @include small {
       padding: 14px;
@@ -75,12 +78,15 @@
       max-width: 399px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       @include medium {
         max-width: none;
         align-items: flex-end;
       }
 
       &Image {
+        width: 399px;
+        max-height: 494px;
         @include medium {
           display: none;
         }

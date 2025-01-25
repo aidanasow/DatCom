@@ -5,42 +5,37 @@ import {useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import {Link} from "react-router-dom";
 import { useServicesStore } from "./store/useServicesStore";
-import {Loader} from "pages/Loader/Loader.jsx";
 
 export const Services = () => {
   const { t } = useTranslation();
-  const [desc, setDesc] = useState(0);
-  const { services, loading } = useServicesStore();
-  const [titles, setTitles] = useState([]);
+  const [index, setIndex] = useState(0);
+  const { services } = useServicesStore();
   const [descriptions, setDescriptions] = useState([]);
   const [image, setImage] = useState("");
 
-
-
   useEffect(() => {
-    if (services.length > 0 && services[0]?.included) {
-      const titlesArray = services[0].included.map((item) => item.title);
-      const servicesArray = services[0].included.map(
-        (item) => item.description
+    if (services.length > 0 && services[index]?.included) {
+      const servicesArray = services[index].included.map(
+          (item) => item.title
       );
-      setTitles(titlesArray);
       setDescriptions(servicesArray);
-      setImage(services[0].image);
+      setImage(services[index].image);
     }
-  }, [services]);
+  }, [services, index]);
+
 
   return (
       <Container>
         <Typography variant="heading">{t("titles.services")}</Typography>
         <div className={classes.block} >
           <div className={classes.block_top}>
-            {titles.map((title, key) => (
+            {services?.map((item, key) => (
                 <div
-                    className={`${classes.title} ${desc === key ? classes.active : ""}`}
+                    className={`${classes.title} ${index === key ? classes.active : ""}`}
                     key={key}
-                    onClick={() => setDesc(key)}
+                    onClick={() => setIndex(key)}
                 >
-                  <Typography weight="regular">{title}</Typography>
+                  <Typography weight="regular">{item.title}</Typography>
                 </div>
             ))}
           </div>
@@ -53,7 +48,9 @@ export const Services = () => {
               >
                 {t("titles.aboutService")}
               </Typography>
-              <Typography>{descriptions[desc]}</Typography>
+              <ul>{descriptions.map((item)=>(
+                  <Typography>{item}</Typography>
+              ))}</ul>
             </div>
             <div className={classes.right}>
               <div className={classes.rightImage}>
