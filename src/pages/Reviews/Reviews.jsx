@@ -7,6 +7,7 @@ import {Slider, PaginationComponent} from "modules/index";
 import ReactPlayer from "react-player";
 import {useTranslation} from "react-i18next";
 import {useMediaQuery} from "utils/helpers/useMedia.js";
+import {UseSize} from "utils/helpers/useSize.jsx";
 
 export const Reviews = () => {
     const {t} = useTranslation();
@@ -17,15 +18,12 @@ export const Reviews = () => {
         offset,
         limit
     );
+    const {tablet, miniTab, laptop, phone}=UseSize();
 
-    const tablet = useMediaQuery("(max-width: 900px)")
-    const phone = useMediaQuery("(max-width: 500px)")
-    const miniTab = useMediaQuery("(max-width: 750px)")
-    const laptop = useMediaQuery("(max-width: 1200px)")
-    let cards = 3
-    if (laptop) cards = 2.5
+    let cards = 2.8
+    if (laptop) cards = 2.05
     if (tablet) cards = 1.72
-    if (miniTab) cards = 1.8
+    if (miniTab) cards = 1.4
     if (phone) cards = 1.5
     let space = 20;
     if (tablet) space = 16;
@@ -93,8 +91,6 @@ export const Reviews = () => {
                                             <PlayIcon/>
                                         }
                                         controls
-                                        light
-                                        playing
                                     />
                                 </div>
                             )}
