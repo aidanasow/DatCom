@@ -83,6 +83,7 @@ export const Reviews = () => {
                                             ref={ref}
                                             width="100%"
                                             height="100%"
+                                            light={false}
                                             url={item.link}
                                             controls
                                             playIcon={<PlayIcon/>}

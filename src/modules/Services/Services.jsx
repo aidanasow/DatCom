@@ -48,8 +48,11 @@ export const Services = () => {
               >
                 {t("titles.aboutService")}
               </Typography>
-              <ul>{descriptions.map((item)=>(
-                  <Typography>{item}</Typography>
+              <ul>{descriptions.map((item, index)=>(
+                  <li key={index}>
+                    <Typography >{item}</Typography>
+                  </li>
+
               ))}</ul>
             </div>
             <div className={classes.right}>
