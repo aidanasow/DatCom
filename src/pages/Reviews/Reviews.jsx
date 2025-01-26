@@ -26,7 +26,22 @@ export const Reviews = () => {
     if (phone) cards = 1.5;
     let space = 20;
     if (tablet) space = 16;
+    const a=[
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
+        {b: "111111111111"},
 
+    ]
     const onChange = (_, page) => {
         setOffset((page - 1) * limit);
     };
@@ -76,10 +91,11 @@ export const Reviews = () => {
                         <Slider
                             maxCards={cards}
                             spaceBetWeen={space}
-                            sliderList={video}
+                            sliderList={a}
                             renderSlide={(item) => (
                                 <div className={classes.youtube}>
-                                   <YouTubeVideo videoId={item.link} />
+                                    <div>{item.b}</div>
+                                   {/*<YouTubeVideo videoId={item.link} />*/}
                                     {/*<ReactPlayer*/}
                                     {/*    width="100%"*/}
                                     {/*    height="100%"*/}

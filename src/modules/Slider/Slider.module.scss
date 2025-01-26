@@ -22,9 +22,9 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    //@include small {
-    //  display: none;
-    //}
+    @include small {
+      display: none;
+    }
     button {
       outline: none;
       background-color: var(--color-primary);
