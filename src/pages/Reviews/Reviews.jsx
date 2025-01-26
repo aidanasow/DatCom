@@ -1,10 +1,9 @@
 import {useState} from "react";
 import {Typography, Container, ReviewCard, Breadcrumbs} from "ui/index";
 import classes from "./Reviews.module.scss";
-import {StarIcon, StarEmptyIcon, PlayIcon} from "assets/index";
+import {StarIcon, StarEmptyIcon} from "assets/index";
 import {useReviewsStore} from "./store/useReviewsStore";
 import {Slider, PaginationComponent} from "modules/index";
-import ReactPlayer from "react-player";
 import {useTranslation} from "react-i18next";
 import {UseSize} from "utils/helpers/useSize.jsx";
 import {YouTubeVideo} from "pages/Reviews/components/YouTubeVideo.jsx";
@@ -30,16 +29,6 @@ export const Reviews = () => {
 
     const onChange = (_, page) => {
         setOffset((page - 1) * limit);
-    };
-    const getVideoId = url => {
-        try {
-            const parsedUrl = new URL(url);
-            const videoIdFromParam = parsedUrl.searchParams.get("v");
-            if (videoIdFromParam) return videoIdFromParam;
-            return parsedUrl.pathname.split("/").pop();
-        } catch (error) {
-            throw new Error(error);
-        }
     };
 
     return (
@@ -90,7 +79,7 @@ export const Reviews = () => {
                             sliderList={video}
                             renderSlide={(item) => (
                                 <div className={classes.youtube}>
-                                   <YouTubeVideo videoId={getVideoId(item.link)} />
+                                   <YouTubeVideo videoId={item.link} />
                                     {/*<ReactPlayer*/}
                                     {/*    width="100%"*/}
                                     {/*    height="100%"*/}
