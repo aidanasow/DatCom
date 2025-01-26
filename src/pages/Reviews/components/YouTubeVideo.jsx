@@ -11,7 +11,7 @@ export const YouTubeVideo = ({ videoId }) => {
         }
     };
     return (
-        <div style={{ position: "relative", width: "100%",height: "100%", paddingBottom: "56.25%" }}>
+        <div style={{width: "100%",height: "100%" }}>
             <iframe
                 src={`https://www.youtube.com/embed/${getVideoId(videoId)}`}
                 title="YouTube video"
@@ -19,9 +19,7 @@ export const YouTubeVideo = ({ videoId }) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
+
                     width: "100%",
                     height: "100%"
                 }}
