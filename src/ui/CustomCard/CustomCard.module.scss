@@ -220,11 +220,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 360px;
-      height: 100px;
       line-height: 1.67em;
       @include medium {
         line-height: 1.5em;
-        height: 104px;
       }
       @include small {
         max-height: 103px;
