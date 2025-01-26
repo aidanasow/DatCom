@@ -221,20 +221,12 @@
       text-overflow: ellipsis;
       max-width: 360px;
       line-height: 1.4em;
-      @include small {
-        line-height: 1.3em;
-        height: 65px;
-      }
+
     }
     .uniDesc {
       margin-bottom: 4px;
       @include medium {
         margin-bottom: 0;
-      }
-    }
-    .mainStudentDesc {
-      @include small {
-        height: 103px;
       }
     }
 

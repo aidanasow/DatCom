@@ -80,18 +80,6 @@ export const Reviews = () => {
                             renderSlide={(item) => (
                                 <div className={classes.youtube}>
                                    <YouTubeVideo videoId={item.link} />
-                                    {/*<ReactPlayer*/}
-                                    {/*    width="100%"*/}
-                                    {/*    height="100%"*/}
-                                    {/*    style={{*/}
-                                    {/*        objectFit: "cover"*/}
-                                    {/*    }}*/}
-                                    {/*    url={item.link}*/}
-                                    {/*    playIcon={*/}
-                                    {/*        <PlayIcon/>*/}
-                                    {/*    }*/}
-                                    {/*    controls*/}
-                                    {/*/>*/}
                                 </div>
                             )}
                         />
