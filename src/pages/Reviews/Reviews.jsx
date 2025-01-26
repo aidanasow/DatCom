@@ -77,6 +77,7 @@ export const Reviews = () => {
                             maxCards={cards}
                             spaceBetWeen={space}
                             sliderList={video}
+                            isVideo={true}
                             renderSlide={(item) => (
                                 <div className={classes.youtube}>
                                    <YouTubeVideo videoId={item.link} />

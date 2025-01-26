@@ -10,6 +10,7 @@ export const Slider = ({
                          minCardWidth = 300,
                          maxCards = 3.2,
                          spaceBetWeen = 20,
+    isVideo
                        }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -62,7 +63,7 @@ export const Slider = ({
                 {renderSlide(item)}
               </SwiperSlide>
           ))}
-          <div className={classes.buttons}>
+          <div className={`${classes.buttons} ${isVideo? classes.videoButton: ""} `}>
             <button
                 ref={prevRef}
                 className={`${
