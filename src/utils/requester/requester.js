@@ -2,11 +2,28 @@ import axios from "axios";
 import { BASE_URL } from "utils/constants/Constants";
 import { create } from "zustand";
 import i18n from "utils/I18next/I18n.js";
-export const requester = axios.create({
-  baseURL: BASE_URL,
-});
-requester.interceptors.request.use(config => {
+import Cookies from "js-cookie";
+const createRequester = () =>
+    axios.create({
+      baseURL: BASE_URL,
+      withCredentials: true,
+    });
+
+const mainApi = createRequester();
+const postApi = createRequester();
+
+mainApi.interceptors.request.use((config) => {
   config.headers["Accept-Language"] = i18n.language;
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
+
+postApi.interceptors.request.use((config) => {
+  const csrftoken = Cookies.get("csrftoken");
+  if (csrftoken) {
+    config.headers["X-CSRFToken"] = csrftoken;
+  }
   return config;
 }, error => {
   return Promise.reject(error);
@@ -29,7 +46,7 @@ export const useApiStore = create((set) => ({
   fetchData: async (url) => {
     set({ loading: true });
     try {
-      const { data } = await requester.get(url);
+      const { data } = await mainApi.get(url);
       if (!data) {
         throw new Error("Not Found");
       }
@@ -46,7 +63,7 @@ export const useApiStore = create((set) => ({
   postRequest: async (url, data) => {
     set({ loading: true, success: null, error: null });
     try {
-      const response= await requester.post(url, data);
+      const response= await postApi.post(url, data);
       set({ success: "Request successful" });
       return response;
     } catch (error) {

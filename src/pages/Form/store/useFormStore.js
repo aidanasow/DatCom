@@ -46,7 +46,7 @@ export const useFormStore = create((set, get) => ({
         const {fetchData} = useApiStore.getState();
         set({loading: true});
         try {
-            const response = await fetchData(`/main-info/contact-for-application/`);
+            const response = await fetchData(`main-info/contact-for-application/`);
             set({whatsappNumber: response.main_number});
         } catch (error) {
             console.error("Error fetching specialities:", error.message);

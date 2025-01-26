@@ -14,6 +14,7 @@ import {sharedTextFieldStyles} from "utils/constants/Constants.jsx";
 export const Form = () => {
     const {t, i18n} = useTranslation();
     const isTablet = useMediaQuery("(max-width: 700px)");
+
     const {
         state,
         errors,
@@ -30,10 +31,7 @@ export const Form = () => {
         color: hasError ? "#eb5757" : "inherit",
     });
 
-
-
     if (loading) return <Loader/>;
-
 
     return (
         <>

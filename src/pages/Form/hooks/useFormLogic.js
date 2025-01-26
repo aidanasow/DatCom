@@ -30,7 +30,6 @@ export const useFormLogic = (language) => {
         fetchStudies,
         countryList,
         studyList,
-        specialityList,
         loading,
         whatsappNumber,
     } = useFormStore();
