@@ -6,8 +6,8 @@ import {useReviewsStore} from "./store/useReviewsStore";
 import {Slider, PaginationComponent} from "modules/index";
 import ReactPlayer from "react-player";
 import {useTranslation} from "react-i18next";
-import {useMediaQuery} from "utils/helpers/useMedia.js";
 import {UseSize} from "utils/helpers/useSize.jsx";
+import {YouTubeVideo} from "pages/Reviews/components/YouTubeVideo.jsx";
 
 export const Reviews = () => {
     const {t} = useTranslation();
@@ -20,16 +20,26 @@ export const Reviews = () => {
     );
     const {tablet, miniTab, laptop, phone}=UseSize();
 
-    let cards = 2.8
-    if (laptop) cards = 2.05
-    if (tablet) cards = 1.72
-    if (miniTab) cards = 1.4
-    if (phone) cards = 1.5
+    let cards = 2.8;
+    if (laptop) cards = 2;
+    if (tablet) cards = 1.6;
+    if (miniTab) cards = 1.4;
+    if (phone) cards = 1.5;
     let space = 20;
     if (tablet) space = 16;
 
     const onChange = (_, page) => {
         setOffset((page - 1) * limit);
+    };
+    const getVideoId = url => {
+        try {
+            const parsedUrl = new URL(url);
+            const videoIdFromParam = parsedUrl.searchParams.get("v");
+            if (videoIdFromParam) return videoIdFromParam;
+            return parsedUrl.pathname.split("/").pop();
+        } catch (error) {
+            throw new Error(error);
+        }
     };
 
     return (
@@ -80,19 +90,19 @@ export const Reviews = () => {
                             sliderList={video}
                             renderSlide={(item) => (
                                 <div className={classes.youtube}>
-                                    <ReactPlayer
-                                        width="100%"
-                                        height="100%"
-                                        style={{
-                                            objectFit: "cover"
-                                        }}
-                                        url={item.link}
-                                        playIcon={
-                                            <PlayIcon/>
-                                        }
-                                        controls
-                                        playing
-                                    />
+                                   <YouTubeVideo videoId={getVideoId(item.link)} />
+                                    {/*<ReactPlayer*/}
+                                    {/*    width="100%"*/}
+                                    {/*    height="100%"*/}
+                                    {/*    style={{*/}
+                                    {/*        objectFit: "cover"*/}
+                                    {/*    }}*/}
+                                    {/*    url={item.link}*/}
+                                    {/*    playIcon={*/}
+                                    {/*        <PlayIcon/>*/}
+                                    {/*    }*/}
+                                    {/*    controls*/}
+                                    {/*/>*/}
                                 </div>
                             )}
                         />
@@ -100,8 +110,8 @@ export const Reviews = () => {
                 </div>
             </Container>
         </div>
-</>
+        </>
 
-)
-    ;
+    )
+        ;
 };

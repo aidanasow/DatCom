@@ -74,6 +74,9 @@
     overflow: hidden;
     width: 400px;
     height: 300px;
+    @include medium {
+      width: 420px;
+    }
     @include small-medium {
       width: 320px;
       height: 205px;

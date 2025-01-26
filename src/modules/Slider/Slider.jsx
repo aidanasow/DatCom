@@ -42,6 +42,7 @@ export const Slider = ({
             modules={[Navigation, Pagination, A11y]}
             spaceBetween={spaceBetWeen}
             allowTouchMove={true}
+            touchEventsTarget='container'
             simulateTouch={true}
             slidesPerView={slidesPerView}
             navigation={{
