@@ -13,7 +13,7 @@ export const Reviews = () => {
     const [offset, setOffset] = useState(0);
     const limit = 6;
 
-    const {reviews, count, video, rating, loading} = useReviewsStore(
+    const {reviews, count, video, rating} = useReviewsStore(
         offset,
         limit
     );
@@ -93,6 +93,8 @@ export const Reviews = () => {
                                             <PlayIcon/>
                                         }
                                         controls
+                                        light
+                                        playing
                                     />
                                 </div>
                             )}
