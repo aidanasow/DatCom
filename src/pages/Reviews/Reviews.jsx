@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useState} from "react";
 import {Typography, Container, ReviewCard, Breadcrumbs} from "ui/index";
 import classes from "./Reviews.module.scss";
 import {StarIcon, StarEmptyIcon, PlayIcon} from "assets/index";
@@ -12,7 +12,6 @@ import {UseSize} from "utils/helpers/useSize.jsx";
 export const Reviews = () => {
     const {t} = useTranslation();
     const [offset, setOffset] = useState(0);
-    const ref=useRef(null)
     const limit = 6;
 
     const {reviews, count, video, rating, loading} = useReviewsStore(offset, limit);
@@ -80,7 +79,6 @@ export const Reviews = () => {
                                 renderSlide={(item) => (
                                     <div className={classes.youtube}>
                                         <ReactPlayer
-                                            ref={ref}
                                             width="100%"
                                             height="100%"
                                             light={false}
