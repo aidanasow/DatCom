@@ -91,6 +91,7 @@ export const Reviews = () => {
                                             <PlayIcon/>
                                         }
                                         controls
+                                        light
                                     />
                                 </div>
                             )}
